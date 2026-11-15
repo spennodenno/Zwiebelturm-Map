@@ -1,0 +1,67 @@
+# Zwiebelturm-Karte – pipeline configuration
+# Everything that defines the scope of the map lives here.
+
+# Countries shown on the map (ISO 3166-1 alpha-2). Add or remove codes, then
+# re-run `python build.py`. Only these countries are drawn; nothing else exists
+# on the map.
+countries = ["DE", "AT", "CH", "CZ", "SI", "HU", "PL", "IT"]
+
+[osm]
+# Where the OSM data comes from: "postpass" (Geofabrik's SQL service, fast) or
+# "overpass" (classic Overpass API). Same result, separate caches.
+source = "postpass"
+postpass_endpoint = "https://postpass.geofabrik.de/api/interpreter"
+# Overpass API servers, tried in order when one fails (only for source = "overpass").
+endpoints = [
+  "https://overpass-api.de/api/interpreter",
+  "https://overpass.private.coffee/api/interpreter",
+]
+# Each country is fetched in grid cells of this size (degrees). A cell that
+# times out is split into four automatically.
+cell_deg = 2.0
+timeout_s = 600
+pause_s = 2            # politeness pause between requests
+# Please put a contact (mail or repo URL) here – OSM and Wikimedia ask for it.
+user_agent = "zwiebelturm-karte/1.0 (hobby map project; contact: SET-ME)"
+
+[merge]
+dedupe_radius_m = 30   # node + building of the same church are merged
+attach_radius_m = 60   # tower / roof parts are attached to the nearest church
+
+[export]
+chunk_size = 1000      # churches per detail file (loaded on click)
+
+[wikipedia]
+# Wikidata items are matched to OSM churches by coordinates within this radius.
+match_radius_m = 120
+# Photos are copied into site/data/img (500 px wide), so the page itself makes
+# no requests to third parties. false = link the image from Wikimedia instead.
+download_photos = true
+photo_width = 500
+# First language is the primary one (article link, intro text).
+languages = ["de", "en"]
+# Wikidata classes (and all their subclasses) that count as a church.
+# Q16970 = church building, Q108325 = chapel
+classes = ["Q16970", "Q108325"]
+# Wikidata items whose label matches one of these patterns are ignored
+# (Bavarian archaeological-site entries sit on church coordinates).
+exclude_labels = ["^Bodendenkmal"]
+# Wikidata statements shown in the info card (labels come from Wikidata).
+properties = ["P571", "P1619", "P2048", "P84", "P149", "P825", "P140", "P708",
+              "P1435", "P186", "P131"]
+
+# Regions with Wikipedia/Wikidata merge. To switch on another region, copy a
+# block and describe the OSM boundary relation by its tags. Any admin area
+# works (district, state, canton, province, a whole country).
+[[wikipedia.regions]]
+id = "weilheim-schongau"
+label = "Landkreis Weilheim-Schongau"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Weilheim-Schongau" }
+
+# Example – enable by setting enabled = true:
+[[wikipedia.regions]]
+id = "garmisch-partenkirchen"
+label = "Landkreis Garmisch-Partenkirchen"
+enabled = false
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Garmisch-Partenkirchen" }
