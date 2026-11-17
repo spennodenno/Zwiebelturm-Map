@@ -1,0 +1,267 @@
+{
+ "generated": "2026-11-15",
+ "n": 235327,
+ "chunk_size": 1000,
+ "bbox": [
+  5.8525,
+  35.4892,
+  24.1432,
+  55.0653
+ ],
+ "categories": [
+  {
+   "key": "unknown",
+   "color": "#3f4955",
+   "bulbous": false,
+   "de": "Turmdach nicht erfasst",
+   "en": "Tower roof not recorded",
+   "count": 232885
+  },
+  {
+   "key": "other",
+   "color": "#8d97a3",
+   "bulbous": false,
+   "de": "Andere Turmform (Spitzhelm, Satteldach …)",
+   "en": "Other tower type (spire, saddleback …)",
+   "count": 1912
+  },
+  {
+   "key": "dome",
+   "color": "#2fd0c8",
+   "bulbous": true,
+   "de": "Kuppel",
+   "en": "Dome",
+   "count": 203
+  },
+  {
+   "key": "welsch",
+   "color": "#b388ff",
+   "bulbous": true,
+   "de": "Welsche Haube / Laternenhaube",
+   "en": "Welsch cap / lantern cap",
+   "count": 5
+  },
+  {
+   "key": "onion",
+   "color": "#ffb000",
+   "bulbous": true,
+   "de": "Zwiebelhaube",
+   "en": "Onion dome",
+   "count": 322
+  },
+  {
+   "key": "onion_double",
+   "color": "#ff3d7f",
+   "bulbous": true,
+   "de": "Doppelzwiebel",
+   "en": "Double onion dome",
+   "count": 0
+  }
+ ],
+ "shape_labels": {
+  "onion": {
+   "de": "Zwiebelhaube",
+   "en": "onion dome"
+  },
+  "dome": {
+   "de": "Kuppel",
+   "en": "dome"
+  },
+  "pyramidal": {
+   "de": "Pyramidendach / Spitzhelm",
+   "en": "pyramidal roof / spire"
+  },
+  "cone": {
+   "de": "Kegeldach",
+   "en": "conical roof"
+  },
+  "spire": {
+   "de": "Spitzhelm",
+   "en": "spire"
+  },
+  "gabled": {
+   "de": "Satteldach",
+   "en": "gabled (saddleback) roof"
+  },
+  "hipped": {
+   "de": "Walmdach",
+   "en": "hipped roof"
+  },
+  "half-hipped": {
+   "de": "Krüppelwalmdach",
+   "en": "half-hipped roof"
+  },
+  "crosspitched": {
+   "de": "Kreuzdach",
+   "en": "cross-gabled roof"
+  },
+  "flat": {
+   "de": "Flachdach",
+   "en": "flat roof"
+  },
+  "skillion": {
+   "de": "Pultdach",
+   "en": "skillion roof"
+  },
+  "mansard": {
+   "de": "Mansarddach",
+   "en": "mansard roof"
+  },
+  "gambrel": {
+   "de": "Mansardgiebeldach",
+   "en": "gambrel roof"
+  },
+  "round": {
+   "de": "Tonnendach",
+   "en": "barrel roof"
+  },
+  "saltbox": {
+   "de": "Schleppdach",
+   "en": "saltbox roof"
+  }
+ },
+ "countries": [
+  {
+   "iso": "DE",
+   "en": "Germany",
+   "de": "Deutschland",
+   "count": 78465,
+   "by_category": [
+    76801,
+    1310,
+    133,
+    5,
+    216,
+    0
+   ]
+  },
+  {
+   "iso": "AT",
+   "en": "Austria",
+   "de": "Österreich",
+   "count": 16985,
+   "by_category": [
+    16868,
+    65,
+    5,
+    0,
+    47,
+    0
+   ]
+  },
+  {
+   "iso": "CH",
+   "en": "Switzerland",
+   "de": "Schweiz",
+   "count": 7403,
+   "by_category": [
+    7279,
+    112,
+    4,
+    0,
+    8,
+    0
+   ]
+  },
+  {
+   "iso": "CZ",
+   "en": "Czechia",
+   "de": "Tschechien",
+   "count": 14816,
+   "by_category": [
+    14717,
+    57,
+    8,
+    0,
+    34,
+    0
+   ]
+  },
+  {
+   "iso": "SI",
+   "en": "Slovenia",
+   "de": "Slowenien",
+   "count": 3405,
+   "by_category": [
+    3393,
+    11,
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "iso": "HU",
+   "en": "Hungary",
+   "de": "Ungarn",
+   "count": 8253,
+   "by_category": [
+    8231,
+    18,
+    2,
+    0,
+    2,
+    0
+   ]
+  },
+  {
+   "iso": "PL",
+   "en": "Poland",
+   "de": "Polen",
+   "count": 26536,
+   "by_category": [
+    26475,
+    53,
+    7,
+    0,
+    1,
+    0
+   ]
+  },
+  {
+   "iso": "IT",
+   "en": "Italy",
+   "de": "Italien",
+   "count": 79464,
+   "by_category": [
+    79121,
+    286,
+    43,
+    0,
+    14,
+    0
+   ]
+  }
+ ],
+ "wikipedia_regions": [
+  {
+   "id": "weilheim-schongau",
+   "label": "Landkreis Weilheim-Schongau",
+   "bbox": [
+    10.7156838,
+    47.6159762,
+    11.4304095,
+    47.9548811
+   ],
+   "churches": 276,
+   "matched": 183,
+   "by_tag": 129,
+   "by_coordinates": 54,
+   "with_article": 103,
+   "with_photo": 150,
+   "roof_from_text": 66
+  }
+ ],
+ "stats": {
+  "osm_objects": 283238,
+  "raw_churches": 247509,
+  "raw_towers": 33122,
+  "raw_roof_parts": 2607,
+  "duplicates_merged": 15844,
+  "standalone_towers": 3662,
+  "onion_roofs_without_church": 144,
+  "records": 235327,
+  "overrides_applied": 0
+ }
+}

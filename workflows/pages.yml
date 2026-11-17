@@ -1,0 +1,41 @@
+# Publishes the site/ folder to GitHub Pages.
+# Default: deploys the data you built locally and committed (site/data).
+# Manual run with "rebuild" ticked: downloads fresh data on the GitHub runner first.
+name: Deploy map
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      rebuild:
+        description: "Download fresh OSM / Wikipedia data before deploying"
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build data
+        if: ${{ inputs.rebuild || hashFiles('site/data/manifest.json') == '' }}
+        run: python build.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

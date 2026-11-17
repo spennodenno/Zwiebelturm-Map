@@ -1,0 +1,4 @@
+# Manual or external roof-type classifications. They win over OSM and Wikipedia.
+# osm_id: as shown in the info card (e.g. way/123456). roof: unknown | other | dome | welsch | onion | onion_double
+# source: free text (e.g. "manual", "vision-model v1"). Lines starting with # are ignored.
+osm_id,roof,source,note
