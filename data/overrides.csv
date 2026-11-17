@@ -1,0 +1,173 @@
+# Manual or external roof-type classifications. They win over OSM and Wikipedia.
+# osm_id: as shown in the info card (e.g. way/123456). roof: unknown | other | dome | welsch | onion | onion_double
+# source: free text (e.g. "manual", "vision-model v1"). Lines starting with # are ignored.
+osm_id,roof,source,note
+way/107185727,other,yolov8-cls-reviewed,St. Johannes Baptist
+way/159350118,onion,yolov8-cls-reviewed,Unsere liebe Frau vom Heiligen Blut
+node/9405232317,other,yolov8-cls-reviewed,Wallfahrtskirche Maria Trost
+way/295246355,welsch,yolov8-cls-reviewed,Ulrichskapelle
+way/89797026,welsch,yolov8-cls-reviewed,St. Josef
+node/13353057863,other,yolov8-cls-reviewed,St. Rasso
+way/137119096,onion,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/203867941,other,yolov8-cls-reviewed,Verklärung Christi
+way/630016781,other,yolov8-cls-reviewed,St. Petrus und Paulus
+way/159848164,onion,yolov8-cls-reviewed,Unsere Liebe Frau
+way/242084170,onion,yolov8-cls-reviewed,St. Magnus
+way/185087864,onion,yolov8-cls-reviewed,St. Wolfgang
+way/203402222,welsch,yolov8-cls-reviewed,St. Moritz
+way/136778666,other,yolov8-cls-reviewed,Stadtpfarrkirche Zum Heiligsten Erlöser
+way/106663456,other,yolov8-cls-reviewed,Hauskapelle
+node/12101911261,other,yolov8-cls-reviewed,Hl. Dreifaltigkeit
+node/11157702910,dome,yolov8-cls-reviewed,XIV Grabkapelle
+way/553780566,other,yolov8-cls-reviewed,Sankt Willibald
+way/425390341,onion,yolov8-cls-reviewed,Katholische Friedhofskapelle
+way/692473939,onion_double,yolov8-cls-reviewed,Wallfahrtskirche St. Leonhard
+way/296312964,onion_double,yolov8-cls-reviewed,St. Ägidius
+way/87971830,welsch,yolov8-cls-reviewed,Heilig-Kreuz-Kirche
+way/39427283,other,yolov8-cls-reviewed,St. Stephan (Osteraufkirche)
+way/196539643,other,yolov8-cls-reviewed,St. Maria
+way/204277032,onion,yolov8-cls-reviewed,St. Martin
+way/196092043,welsch,yolov8-cls-reviewed,St. Wendelin
+way/685053616,other,yolov8-cls-reviewed,Josefs Kapelle
+way/237921133,dome,yolov8-cls-reviewed,Mariä Sieben Schmerzen
+way/94585280,welsch,yolov8-cls-reviewed,Maria Himmelfahrt
+way/528160428,welsch,yolov8-cls-reviewed,St. Jakobus
+way/1426287476,dome,yolov8-cls-reviewed,Ölbergkapelle
+way/310316756,other,yolov8-cls-reviewed,Maria Schnee
+way/124208802,welsch,yolov8-cls-reviewed,St. Nikolaus
+way/353930147,other,yolov8-cls-reviewed,St. Anna
+way/238325270,other,yolov8-cls-reviewed,Weilerkapelle
+way/1125747876,other,yolov8-cls-reviewed,St. Leonhard
+way/54150615,other,yolov8-cls-reviewed,St.-Nikolaus
+way/56202332,welsch,yolov8-cls-reviewed,St. Michael
+way/541750621,onion,yolov8-cls-reviewed,St. Antonius
+way/135657575,onion,yolov8-cls-reviewed,Dreifaltigkeitskapelle
+way/98498632,onion,yolov8-cls-reviewed,St. Michael
+way/87290140,other,yolov8-cls-reviewed,St. Magnus
+way/243493952,other,yolov8-cls-reviewed,St. Petrus
+way/258018899,welsch,yolov8-cls-reviewed,St. Laurentius
+way/205425050,onion,yolov8-cls-reviewed,St. Ulrich
+way/200437022,welsch,yolov8-cls-reviewed,Mariä Heimsuchung
+way/404561377,onion_double,yolov8-cls-reviewed,St. Margareta
+way/194638710,other,yolov8-cls-reviewed,St. Nikolaus
+way/112693437,onion,yolov8-cls-reviewed,Sankt Pankratius
+way/100996092,welsch,yolov8-cls-reviewed,St. Nikolaus
+way/1236949508,onion,yolov8-cls-reviewed,Kapelle St. Walburga
+way/94517200,other,yolov8-cls-reviewed,St. Nikolaus
+way/95097672,onion,yolov8-cls-reviewed,St. Isidor
+way/94187259,other,yolov8-cls-reviewed,Pfarrkirche St. Peter und Paul
+way/198466810,other,yolov8-cls-reviewed,St. Nikolaus
+way/105891645,other,yolov8-cls-reviewed,St. Wolfgang
+way/123684404,other,yolov8-cls-reviewed,St. Andreas
+way/196489403,welsch,yolov8-cls-reviewed,Martinskapelle
+way/70265072,onion,yolov8-cls-reviewed,St. Coloman
+way/1036488295,onion,yolov8-cls-reviewed,Klosterkirche
+node/9458542820,onion,yolov8-cls-reviewed,Marienkapelle
+way/198951547,other,yolov8-cls-reviewed,Bruder-Georg-Kapelle
+way/109074741,other,yolov8-cls-reviewed,Maria von der Versöhnung
+way/204360618,other,yolov8-cls-reviewed,St. Leonhard
+node/7508096246,onion,yolov8-cls-reviewed,St. Antonius
+way/1118031632,other,yolov8-cls-reviewed,"Hirschau-Kapelle ""Mutter Gottes"""
+way/194700301,onion,yolov8-cls-reviewed,Kapelle Mariä Heimsuchung
+way/194947836,onion,yolov8-cls-reviewed,Mariä Verkündigung
+node/10207085221,onion,yolov8-cls-reviewed,Mariä Heimsuchung
+way/204515721,other,yolov8-cls-reviewed,Zinkenbüchelkapelle
+way/96561860,welsch,yolov8-cls-reviewed,Marienmünster
+way/202281971,onion,yolov8-cls-reviewed,Marienkapelle
+way/132310625,other,yolov8-cls-reviewed,Baudenkmal D-7-77-173-62 in Halblech im Ortsteil Buching
+node/712590445,onion,yolov8-cls-reviewed,Leonhardikapelle
+way/1055070703,other,yolov8-cls-reviewed,Kapelle Maria Einsiedeln
+way/214769380,onion,yolov8-cls-reviewed,St. Martin
+node/9673733232,other,yolov8-cls-reviewed,Lourdeskapelle
+way/87839822,onion,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/94366431,onion,yolov8-cls-reviewed,St. Ulrich
+way/106239276,welsch,yolov8-cls-reviewed,Marien-Seelenkapelle
+way/138010354,onion,yolov8-cls-reviewed,St. Nikolaus
+way/94442402,onion,yolov8-cls-reviewed,St. Josef
+way/846230819,other,yolov8-cls-reviewed,Katholische Marienkapelle
+way/88214688,other,yolov8-cls-reviewed,St. Ulrich
+way/159807368,onion,yolov8-cls-reviewed,Kapelle Maria Trost
+way/97410566,other,yolov8-cls-reviewed,St. Koloman
+way/677951742,onion,yolov8-cls-reviewed,St. Margaretha
+way/68571936,other,yolov8-cls-reviewed,St. Antonius
+way/762721787,other,yolov8-cls-reviewed,Kriegergedächtniskapelle
+way/158742681,other,yolov8-cls-reviewed,St. Walburga
+way/414807882,other,yolov8-cls-reviewed,St. Wendelin
+way/492435579,onion,yolov8-cls-reviewed,Maria Brunn
+way/98431187,other,yolov8-cls-reviewed,Ridmonument
+way/161734449,other,yolov8-cls-reviewed,St. Coloman
+way/224124854,welsch,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/124408637,other,yolov8-cls-reviewed,Maria am Wege
+way/166212044,onion,yolov8-cls-reviewed,St. Stephan
+way/172180845,onion,yolov8-cls-reviewed,St. Nikolaus
+way/88275799,welsch,yolov8-cls-reviewed,Frauenkapelle
+way/159820081,onion,yolov8-cls-reviewed,St. Elisabeth
+way/105706836,other,yolov8-cls-reviewed,Kapelle
+way/203399309,other,yolov8-cls-reviewed,Sieben Schmerzen Mariae
+node/7390241781,onion,yolov8-cls-reviewed,St. Magnus
+way/249671628,onion,yolov8-cls-reviewed,St. Nikolaus
+way/88695755,other,yolov8-cls-reviewed,St. Margaretha
+way/133600054,onion,yolov8-cls-reviewed,Mariä Geburt
+way/328323124,other,yolov8-cls-reviewed,Hofkapelle Hegratsried
+way/95778859,onion,yolov8-cls-reviewed,St. Laurentius
+way/464693902,welsch,yolov8-cls-reviewed,St. Antonius
+way/499407372,other,yolov8-cls-reviewed,Dorfkapelle
+way/159486687,onion_double,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/88604961,other,yolov8-cls-reviewed,Schmerzhafte Muttergottes
+way/356653424,onion,yolov8-cls-reviewed,Mariä Heimsuchung
+way/243320987,other,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/197911111,onion,yolov8-cls-reviewed,St. Michael
+way/164426925,onion,yolov8-cls-reviewed,Franziskanerkirche St. Stephan
+way/243647605,welsch,yolov8-cls-reviewed,Wahlfahrtskirche Maria Mühlberg
+way/139399150,other,yolov8-cls-reviewed,St. Vitus
+way/205442590,onion,yolov8-cls-reviewed,St. Antonius
+way/118714612,onion,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/197547850,onion,yolov8-cls-reviewed,St. Joseph
+way/312558895,welsch,yolov8-cls-reviewed,St. Peter und Paul
+way/25424031,welsch,yolov8-cls-reviewed,Feldkirche St. Ulrich und Afra
+way/245649837,welsch,yolov8-cls-reviewed,St. Martin
+way/278768341,other,yolov8-cls-reviewed,Kapelle St. Nepomuk
+way/147022475,other,yolov8-cls-reviewed,St. Michael
+way/97369239,onion,yolov8-cls-reviewed,Marienkapelle
+way/80819649,onion,yolov8-cls-reviewed,Pfarrkirche St. Georg
+way/132822844,welsch,yolov8-cls-reviewed,St. Vitus
+way/172541953,other,yolov8-cls-reviewed,Zum gegeißelten Heiland
+way/95829609,other,yolov8-cls-reviewed,St. Nikolaus
+node/11369510654,other,yolov8-cls-reviewed,Kapelle
+way/693674846,welsch,yolov8-cls-reviewed,St. Martin
+way/196269692,other,yolov8-cls-reviewed,Katholische Kapelle St. Maria
+way/131485963,other,yolov8-cls-reviewed,St. Michael
+way/104504523,onion,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/158609735,onion,yolov8-cls-reviewed,Marienkapelle
+node/1438506672,onion,yolov8-cls-reviewed,Kreuzkapelle
+way/224683266,other,yolov8-cls-reviewed,St. Peter und Paul
+way/523343964,other,yolov8-cls-reviewed,Heilig Kreuz
+way/397862616,onion,yolov8-cls-reviewed,St. Vitus
+way/45741205,onion,yolov8-cls-reviewed,St. Jakobus
+way/202516108,onion,yolov8-cls-reviewed,Maria Vermählung
+node/4833450503,other,yolov8-cls-reviewed,Waldkapelle
+way/446795958,other,yolov8-cls-reviewed,St. Magnus
+node/7513705203,other,yolov8-cls-reviewed,Wallfahrtskapelle Maria Heimsuchung
+way/250417553,welsch,yolov8-cls-reviewed,Sankt Vitus
+node/8628307420,onion,yolov8-cls-reviewed,St. Petrus und Katharina
+way/1325955875,welsch,yolov8-cls-reviewed,St. Oswald Kirche
+way/448867378,onion,yolov8-cls-reviewed,St. Johannes Baptist
+way/327611223,other,yolov8-cls-reviewed,Hl. Dreifaltigkeit
+way/105706989,other,yolov8-cls-reviewed,St. Wendelin
+way/227168280,other,yolov8-cls-reviewed,Kapelle an der Eschenau
+way/322503018,onion,yolov8-cls-reviewed,St. Sebastian
+way/172126682,other,yolov8-cls-reviewed,St. Stephan
+way/206798944,other,yolov8-cls-reviewed,St. Nikolaus
+way/446302758,welsch,yolov8-cls-reviewed,Maria Himmelfahrt
+way/243646865,onion,yolov8-cls-reviewed,St. Rupertus
+way/107472321,other,yolov8-cls-reviewed,St. Sebastian
+way/397173552,onion,yolov8-cls-reviewed,St. Anna
+way/320517263,welsch,yolov8-cls-reviewed,Frauenbrunn-Kapelle
+way/155967064,onion,yolov8-cls-reviewed,St. Pankratius
+way/122034807,onion,yolov8-cls-reviewed,St. Sebastian
+way/445228700,other,yolov8-cls-reviewed,St. Koloman
+way/1223388254,onion,yolov8-cls-reviewed,Pfarrkirche St. Andreas
+way/155047752,welsch,yolov8-cls-reviewed,Sankt Nikolaus
+way/198247358,other,yolov8-cls-reviewed,Mariä Himmelfahrt
+way/243072317,onion,yolov8-cls-reviewed,Unserer Lieben Frau
+way/88604990,onion,yolov8-cls-reviewed,Maria Stock

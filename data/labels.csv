@@ -1,0 +1,791 @@
+﻿osm_id,roof,source,note
+way/117467461,other,manual-label,Christuskirche
+node/12825156990,other,manual-label,Dorfkapelle
+way/37062025,onion,manual-label,St. Johann Baptist
+way/170636400,onion,manual-label,Pfarrkirche St. Peter und Paul
+way/302115022,other,manual-label,Heilig-Kreuz
+way/264363480,other,manual-label,Mariä Himmelfahrt
+way/542257206,other,manual-label,St. Benno
+way/1445097388,onion,manual-label,Mariä Opferung
+node/60908745,other,manual-label,Kapelle
+way/286955335,other,manual-label,Hl. Theresia
+way/448085210,no_tower,manual-label,Baudenkmal D-1-82-136-25 in Bernloh bei Warngau im Ortsteil Bürg
+way/337490512,welsch,manual-label,St. Korbinian
+way/739570109,onion,manual-label,St. Magdalena
+way/112604436,other,manual-label,Waldkirche
+way/327762929,no_tower,manual-label,Ulrichskapelle
+way/201009278,onion,manual-label,St. Johann Baptist Johannisrain
+way/320596139,other,manual-label,St. Bartholomäus
+way/361898198,other,manual-label,St. Johannes der Täufer
+way/47426209,other,manual-label,Mariä Unbefleckte Empfängnis
+way/860383062,no_tower,manual-label,Weilerkapelle
+way/141533693,onion,manual-label,Mariä Opferung
+way/533228614,onion,manual-label,Taxakapelle
+way/37929624,other,manual-label,St. Laurentius
+way/114351416,other,manual-label,Mariä Himmelfahrt
+way/415360694,other,manual-label,St. Emmeram
+node/764872223,onion,manual-label,Klosterkirche Dietramszell
+way/468491421,onion,manual-label,St. Josef
+way/90488362,other,manual-label,Maria-Hilf-Kapelle
+way/50736920,onion,manual-label,Kapelle Heiliges Kreuz
+way/54550196,onion,manual-label,Maria Elend
+way/295274483,other,manual-label,St. Johann Baptist
+way/184803779,other,manual-label,Ortskapelle
+way/553545394,other,manual-label,St. Ulrich und St. Leonhard
+way/186553945,other,manual-label,Martinskirche
+way/116680068,other,manual-label,St. Blasius
+way/621526745,no_tower,manual-label,Kapelle der Schmerzhaften Muttergottes am Anger
+way/1001971219,other,manual-label,Baudenkmal D-1-73-133-38 in Kochel am See im Ortsteil Kochel a.See
+way/306088773,other,manual-label,St. Walburga
+way/39498758,other,manual-label,Basilika Sankt Michael
+way/461510125,onion,manual-label,Kapelle Hl. Kreuz
+way/200945185,other,manual-label,St. Leonhard
+way/114714328,onion,manual-label,St. Johannes der Täufer
+way/307416104,other,manual-label,Maria Morgenstern
+way/60778824,other,manual-label,St. Valentin
+way/90547337,onion,manual-label,St. Pankratius
+way/171523571,onion,manual-label,St. Calixtus
+way/190513231,welsch,manual-label,St. Andreas
+way/199456327,other,manual-label,St. Rupertus und Laurentius
+way/789333155,welsch,manual-label,Kreuzkapelle
+way/174975850,welsch,manual-label,Friedhofskapelle Heilig-Blut
+way/98459969,other,manual-label,St. Michael
+way/248239251,other,manual-label,St. Margaretha
+node/6939119632,no_tower,manual-label,Bildstock
+way/326163356,other,manual-label,St. Martin
+way/315898078,onion,manual-label,Brunnenkapelle
+way/457889936,other,manual-label,St. Vitus
+way/237142708,onion,manual-label,St. Rochuskapelle
+way/145114024,onion,manual-label,St. Martin
+way/175193851,onion_double,manual-label,St. Margareth
+way/471445472,welsch,manual-label,St. Johann Baptist
+way/136385804,other,manual-label,St. Vitus
+way/249755182,other,manual-label,Kapelle
+way/228891563,other,manual-label,St. Anna
+way/404696445,other,manual-label,St. Leonhard und Peter und Paul
+way/439902809,no_tower,manual-label,Maria Hilf
+way/184063333,onion,manual-label,St. Laurentius
+way/109317774,onion,manual-label,St. Antonius
+way/113664214,onion,manual-label,St. Johann
+way/61093908,other,manual-label,Burgkapelle St. Ägidien
+way/169480208,onion,manual-label,St. Andrä
+way/133202819,other,manual-label,"Wallfahrtskirche ""Heilige Maria"""
+way/183614894,no_tower,manual-label,Kapelle
+way/95067783,onion,manual-label,Wallfahrtskirche Allerheiligen
+way/347175267,other,manual-label,Maria-Dank-Kapelle
+way/184936841,onion,manual-label,St. Leonhard
+way/103457117,onion,manual-label,Pfarrkirche St. Kilian
+way/336765848,other,manual-label,Kapelle Riesen
+way/56198311,onion,manual-label,Pfarrkirche
+node/3489486117,onion,manual-label,Klösterl
+way/48801261,onion,manual-label,St. Jakobus
+way/166274487,other,manual-label,Kapelle Maria Hilf
+way/222342552,onion_double,manual-label,St. Michael
+way/112783930,onion,manual-label,St. Mauritius
+way/140641965,other,manual-label,Mesnerhauskapelle
+way/301080682,other,manual-label,Riedersteinkapelle
+way/173753455,other,manual-label,St. Martin
+way/516678773,other,manual-label,Kapelle ''Heilige Drei Könige''
+way/490313754,other,manual-label,Pfarrkirche St. Anna
+way/169901646,onion,manual-label,St. Margaretha
+node/1276074756,no_tower,manual-label,Kapelle zum Gedenken an die im Erster Weltkrieg gefallenen Mitglieder des Clubs alpiner Skiläufer
+way/382511461,no_tower,manual-label,Kapelle
+way/252793263,no_tower,manual-label,Hofkapelle
+way/378633222,other,manual-label,St. Nikolaus
+way/141067395,other,manual-label,St. Anna
+way/242874799,other,manual-label,Katholische Kuratiekirche Sankt Antonius
+way/794526245,no_tower,manual-label,Kapelle
+way/358530197,welsch,manual-label,St. Rupert
+way/95097093,onion_double,manual-label,St. Peter und Paul
+way/193166858,other,manual-label,Zu Unserer lieben Frau von Wladimir
+way/259580541,no_tower,manual-label,Wallfahrtskirche St. Sebald (Egling)
+way/1118915979,onion,manual-label,St. Peter und Paul
+way/123371138,onion,manual-label,Christuskirche
+way/130437186,onion,manual-label,St. Quirin
+way/97684572,onion,manual-label,Erasmus-Kapelle
+way/89337805,onion,manual-label,Mariae Heimsuchung
+way/260735183,other,manual-label,Maria Stern
+node/8634636045,onion,manual-label,St. Michael
+way/103781859,no_tower,manual-label,Hahnbauerkapelle
+way/116231191,other,manual-label,Kreuzkirche
+way/310510879,no_tower,manual-label,Heiliges Grab
+way/164675995,other,manual-label,St. Dionys
+way/153141725,no_tower,manual-label,Sankt Leonhardskapelle
+way/277880578,other,manual-label,Kapelle Deisenried
+way/98489112,other,manual-label,Filialkirche St. Peter und Paul
+way/207511078,other,manual-label,St. Josef
+way/155565920,other,manual-label,Kesselalm Kapelle
+way/92128229,other,manual-label,Pfarrkirche St. Martin
+way/49867155,welsch,manual-label,Wieskirche
+way/59100618,other,manual-label,St. Sebastians-Kapelle
+way/180322120,other,manual-label,Mariä Heimsuchung
+way/336771446,other,manual-label,Mariahilf
+way/164828138,onion,manual-label,Pfarrkirche St. Nikolaus
+way/245497191,onion,manual-label,St. Jakobus - Urschalling
+way/108484647,other,manual-label,St. Martin Ellbach
+way/110087594,onion,manual-label,St. Jakobus
+way/326955790,no_tower,manual-label,Franziskus-Kapelle
+way/320099112,skip,manual-label,Kirnbergkapelle
+way/48844974,other,manual-label,Freudenreichkapelle
+way/336656328,onion,manual-label,St. Korbinian Kleinweil
+way/111430540,onion,manual-label,St. Michael
+way/95242634,other,manual-label,Johanneskirche
+way/781196633,other,manual-label,Gröbl-Kapelle
+way/165237940,dome,manual-label,Hofkapelle
+way/56640714,onion,manual-label,St. Anna
+way/103570294,onion,manual-label,Sankt Johannes der Täufer
+way/929844957,no_tower,manual-label,Aussichtskapelle
+way/447851623,onion_double,manual-label,Gertrudiskapelle
+node/1471775690,other,manual-label,St. Valentin
+way/89155866,other,manual-label,Hardtkapelle
+way/1561408287,onion,manual-label,St. Anna
+way/78059850,other,manual-label,Heilig Blut
+way/38228806,other,manual-label,St. Johann Baptist
+way/370428372,no_tower,manual-label,Marien Kapelle
+way/1316868483,onion,manual-label,St. Johannes
+way/132965849,onion_double,manual-label,St. Andreas
+node/34729590,onion,manual-label,St. Laurentius
+way/56035869,onion,manual-label,St. Georg
+way/95096369,other,manual-label,St. Georg
+way/203085867,onion,manual-label,St. Georg
+node/764870693,other,manual-label,Michaelskapelle
+node/267978751,onion,manual-label,Anastasiakapelle
+way/110199831,onion,manual-label,St. Matgarethen
+way/103285808,onion,manual-label,St. Ägidius
+way/164114525,other,manual-label,Gedächtniskapelle
+way/91007058,other,manual-label,St. Sixtus
+way/458158936,other,manual-label,St. Peter
+node/257396756,other,manual-label,Hl. Margaretha
+way/188940797,onion,manual-label,Sankt Koloman
+way/329057079,other,manual-label,St. Laurentius
+way/323304409,other,manual-label,Welfenmünster
+way/38245221,other,manual-label,Heilig Kreuz
+way/325370102,other,manual-label,Sankt-Georg-Kapelle
+way/159588496,other,manual-label,Mariä Himmelfahrt
+node/4992715800,no_tower,manual-label,Wegkapelle
+way/98000498,onion,manual-label,St. Jakobus der Ältere
+way/522993352,other,manual-label,Maria Verkündung
+way/164618568,other,manual-label,Kapelle Sankt Georg
+way/31766336,onion,manual-label,St. Katharina
+way/89153971,other,manual-label,Heilige Dreifaltigkeit
+way/95241710,other,manual-label,Mariä Heimsuchung
+way/57837993,other,manual-label,St. Margarethen
+way/286476430,other,manual-label,Johanneskapelle
+way/347030700,other,manual-label,St. Peter und Paul
+way/1388454487,other,manual-label,St. Maria Magdalena
+way/486826771,other,manual-label,Martinskirche
+way/165525092,onion,manual-label,Pfarrkirche St. Johannes Baptist
+way/229680567,onion,manual-label,St. Cyriakus
+way/1102226743,no_tower,manual-label,Friedhofskapelle Umrathshausen
+way/358754876,onion,manual-label,Sogenannte Herz-Jesu-Kapelle
+way/157060928,other,manual-label,St. Georg
+way/407182352,other,manual-label,St. Leonhard
+way/183616657,no_tower,manual-label,Lourdeskapelle
+way/174361505,other,manual-label,Maria vom Herzen
+way/93525012,other,manual-label,St. Hilaria und Afra
+way/108954415,onion,manual-label,Gunetsrainkapelle
+way/267063503,other,manual-label,Schnellrieder-Kapelle
+way/97473665,onion,manual-label,St. Eligius
+way/47927032,other,manual-label,St. Valentin
+way/786008549,other,manual-label,St. Nikolaus
+way/89480237,other,manual-label,St. Vitus
+way/560072349,other,manual-label,Evangelische Kirche
+way/245516835,other,manual-label,St. Maria Magdalena
+way/98046019,onion_double,manual-label,St. Nikolaus
+way/687825529,other,manual-label,St. Leonhard
+way/182268853,other,manual-label,St. Peter und Paul
+way/178955412,onion,manual-label,St. Katharina
+way/144414565,other,manual-label,Heilig Kreuz Schwabniederhofen
+way/1329558869,no_tower,manual-label,Wegkapelle
+way/535775765,no_tower,manual-label,Feldkapelle
+way/233474314,other,manual-label,St. Maria
+way/45106455,onion,manual-label,Evangelische Kirche
+way/164828317,onion,manual-label,Marienkirche
+way/191114610,onion,manual-label,St. Andreas
+way/46922460,other,manual-label,Stiftskirche St. Ulrich Habach
+way/48703844,onion,manual-label,Wallfahrtskirche Mariä Heimsuchung (Ilgen)
+way/88748429,onion,manual-label,Heilig Kreuz
+way/65398638,onion,manual-label,Maria Egg
+way/313929154,other,manual-label,Mariä Himmelfahrt
+way/119389679,welsch,manual-label,Heilig Blut
+way/806911384,onion,manual-label,Kapelle Heilig Kreuz
+way/45083829,other,manual-label,Kapelle Pessenbach
+way/256354481,onion,manual-label,Heilig Kreuz
+way/269237028,onion,manual-label,St. Andreas
+way/35472021,onion,manual-label,Stadtpfarrkirche Mariä Himmelfahrt
+way/122778440,onion,manual-label,Kapelle
+way/1099720908,no_tower,manual-label,Hofkapelle
+way/595520934,other,manual-label,Kapelle St. Johannes Baptist
+way/111468981,onion,manual-label,Mariä Himmelfahrt
+way/734458497,other,manual-label,Heilig Kreuz
+way/68882883,other,manual-label,St. Achatz
+way/111176901,no_tower,manual-label,Hofkapelle
+way/279162246,no_tower,manual-label,Auerberg Kapelle
+way/241958185,no_tower,manual-label,Hofkapelle
+way/170671520,onion,manual-label,St. Benedikt
+way/265822255,onion,manual-label,St. Peter und Paul
+way/115641431,other,manual-label,St. Wolfgang
+way/116529013,no_tower,manual-label,Kapelle
+way/1051083158,no_tower,manual-label,St. Marinus und Anianus
+way/25167179,onion,manual-label,St. Nikolaus
+way/162600628,onion,manual-label,St. Johann Baptist Holzhausen
+way/170624283,other,manual-label,St. Margaretha
+way/477858149,onion,manual-label,Frauenbrünnerl
+way/43263470,welsch,manual-label,Mariä Himmelfahrt
+way/83850885,onion,manual-label,Heilig-Kreuz-Kirche
+way/653581330,no_tower,manual-label,Feldkapelle
+way/45675536,onion,manual-label,Sankt Jakob
+way/133318431,onion_double,manual-label,Mariä Geburt
+way/167102218,welsch,manual-label,Maria Aich
+way/122815666,onion,manual-label,St. Agatha
+way/166503262,other,manual-label,St. Magdalena
+way/159159470,onion,manual-label,Orterer Kapelle
+way/102876608,onion,manual-label,Kreuzbergkapelle
+way/265098809,no_tower,manual-label,Nepomuk-Kapelle
+way/60903658,other,manual-label,Spitalkirche
+way/861046425,no_tower,manual-label,Hofkapelle Bolzmacher
+way/165738426,onion,manual-label,Pfarrkirche Mariä Himmelfahrt
+way/583975896,no_tower,manual-label,Kreuzwegstation IV V VI
+way/505126025,other,manual-label,Kapelle
+way/377719440,other,manual-label,Sankt Salvator
+way/98284422,other,manual-label,St. Joseph
+way/304508853,other,manual-label,Zum Guten Hirten
+way/134147306,other,manual-label,Heilig Kreuz
+way/105523742,other,manual-label,Franziskanerkirche
+way/91274826,onion,manual-label,St. Margareta
+way/846205816,welsch,manual-label,Mariä Geburt
+way/350883768,onion,manual-label,St. Johann Baptist
+way/97896785,other,manual-label,St. Josef der Arbeiter
+way/561097626,other,manual-label,Mariä Heimsuchung
+way/96258719,other,manual-label,St. Bernhard von Menthone
+way/638280705,other,manual-label,Eichenkapelle
+way/126221839,onion,manual-label,St. Nikolaus
+way/1501341215,other,manual-label,Johanneskirche
+way/244338465,no_tower,manual-label,Malerkapelle
+way/117146702,other,manual-label,Mariä Himmelfahrt
+way/338981431,other,manual-label,St. Georg Sindelsdorf
+way/110571698,onion,manual-label,Sankt Anna
+way/142426899,other,manual-label,Ölbergkapelle
+way/122291529,onion,manual-label,St. Marinus und Anian
+way/115749099,no_tower,manual-label,Gedächtniskapelle
+way/583975898,no_tower,manual-label,Kreuzwegstation X XI XII
+way/391277275,no_tower,manual-label,Pestkapelle
+way/156982359,other,manual-label,St. Vitus
+way/43868269,onion,manual-label,Pfarrkirche St. Peter und Paul
+way/168357501,other,manual-label,Friedhofskirche St. Sebastian
+way/255939399,onion,manual-label,Maria Königin
+way/209429299,no_tower,manual-label,Auferstehung Christi
+way/556811320,no_tower,manual-label,Friedhofskapelle
+way/108737557,onion,manual-label,Alte Heilig-Kreuz-Kirche
+way/45872694,onion,manual-label,St. Nikolaus
+way/950091073,no_tower,manual-label,Lourdeskapelle
+way/46962183,onion,manual-label,St. Gallus
+way/765813027,other,manual-label,Maria Himmelfahrt
+way/323626185,onion,manual-label,St. Michael Seeshaupt
+way/421643617,other,manual-label,Katholische Kapelle
+way/101237739,other,manual-label,Wallbergkirchlein Heilig Kreuz
+way/164797445,other,manual-label,Friedhofskapelle
+node/5659320221,onion_double,manual-label,St. Georg
+way/466082921,no_tower,manual-label,St. Josef
+way/186730228,other,manual-label,St. Margaretha
+way/310512458,no_tower,manual-label,Wegkapelle
+way/580230634,no_tower,manual-label,Maria Patrona Bavariae
+way/534679801,other,manual-label,Lourdeskapelle
+way/527113670,other,manual-label,St. Johann Baptist
+way/35573352,onion,manual-label,Heilig-Geist-Kirche
+way/112396033,onion,manual-label,Kapelle St. Hubertus
+way/89155807,onion,manual-label,St. Leonhardt
+way/203152377,other,manual-label,Allgaukapelle
+way/191210182,other,manual-label,Maria Himmelfahrt
+way/415360706,no_tower,manual-label,Friedhofskapelle St. Michael
+way/196583869,other,manual-label,St. Johannes und Paulus
+way/1342596860,no_tower,manual-label,Friedhofskapelle
+way/304008503,no_tower,manual-label,Wendelinkapelle
+way/391288679,other,manual-label,Unsere Liebe Frau
+way/45269895,welsch,manual-label,St. Jakob
+way/660234562,other,manual-label,Baudenkmal D-1-82-120-17 in Holzkirchen (Oberbayern) im Ortsteil Hartpenning
+way/111471640,other,manual-label,Auferstehungskirche
+way/176190393,other,manual-label,St. Bartholomäus
+way/169256171,other,manual-label,Kapelle
+way/89480231,onion,manual-label,St. Michael
+way/158009580,other,manual-label,Hl. Familie
+way/198275959,no_tower,manual-label,Sankt Michael
+way/591255288,other,manual-label,St. Simon und Juda
+way/334849670,other,manual-label,Heilig Kreuz
+way/680206790,onion,manual-label,Mariä Schutzkirche
+node/1277697827,other,manual-label,Neumüller Kapelle
+node/3428918761,no_tower,manual-label,Wegkapelle
+way/57697839,other,manual-label,Mariä Himmelfahrt
+way/737342647,other,manual-label,Gsteig-Kapelle
+way/971109298,other,manual-label,Pestkapelle Waith
+way/228831570,other,manual-label,Mariä Himmelfahrt
+way/50677154,onion,manual-label,Pfarrkirche Sankt Georg
+way/111468978,onion,manual-label,St. Martin
+way/61156781,other,manual-label,St. Katharina
+way/228112686,other,manual-label,Auferstehungskirche
+way/109101232,other,manual-label,Herz Mariä
+way/743142734,no_tower,manual-label,Feldkapelle Resle
+way/41760685,other,manual-label,Frauenkirche
+way/82799904,onion,manual-label,St. Johannes Evangelist
+way/199453313,onion,manual-label,Erlöserkirche
+way/498559267,other,manual-label,Zieglerkapelle
+way/336019352,onion,manual-label,Heilige Maria
+way/355830843,other,manual-label,Mariä Himmelfahrt
+node/8151114546,onion,manual-label,Kapelle
+way/184597425,other,manual-label,Marienkirche
+way/440690045,onion,manual-label,St. Nikolaus
+way/1550908171,no_tower,manual-label,Dreifaltigkeitskapelle
+relation/2182950,other,manual-label,Filialkirche zur Heiligen Dreifaltigkeit
+way/37662893,onion,manual-label,St. Bartholomäus
+way/1560560999,no_tower,manual-label,Votivkapelle St. Maria
+node/1864723488,no_tower,manual-label,Wegkapelle
+way/449791496,other,manual-label,St. Martin
+way/170638236,other,manual-label,Liebfrauenkirche
+way/277870997,other,manual-label,Schnitzenbaumerkapelle
+way/198183902,welsch,manual-label,St. Peter und Paul
+way/35920853,other,manual-label,Kriegergedächtniskapelle
+way/292111146,onion,manual-label,Sankt Nikolaus
+way/73654367,welsch,manual-label,Sankt Peter und Paul
+way/481812460,no_tower,manual-label,Pestkapelle
+way/222360076,onion,manual-label,St. Leonhard
+way/188918294,onion,manual-label,St. Georg
+node/3577393150,no_tower,manual-label,Wegkapelle
+way/588785120,no_tower,manual-label,Kapellen-Bildstock
+way/1139146417,no_tower,manual-label,
+way/246043035,other,manual-label,St. Martin
+way/52108532,other,manual-label,Apostelkirche
+way/182671400,other,manual-label,Sankt Gregor Kapelle
+way/222342558,onion,manual-label,Ölbergkapelle
+way/136910825,onion,manual-label,St. Michael
+way/1296596092,onion,manual-label,Wallfahrtskirche Weihenlinden
+way/46893330,onion,manual-label,St. Vitus
+way/309983581,other,manual-label,St. Georg
+way/267116483,other,manual-label,Pfarrkirche St. Vigilius
+way/117823272,other,manual-label,St. Stephanus
+way/153243576,other,manual-label,St. Michael
+way/1019106694,no_tower,manual-label,Hofkapelle zur schmerzhaften Muttergottes
+way/184597421,onion,manual-label,Pfarrkirche St. Peter und Paul
+way/50729166,other,manual-label,Sankt Franziskus
+way/171609271,other,manual-label,Mariä Himmelfahrt
+way/332072427,onion,manual-label,St. Dionysius
+way/306164320,no_tower,manual-label,Mieseben- oder Baumgarten-Kapelle
+way/784482081,other,manual-label,St. Petrus
+way/244347391,other,manual-label,St. Laurentius
+node/1072932770,onion,manual-label,St. Georg
+way/283350867,onion,manual-label,St. Nikolaus
+way/103912103,other,manual-label,Johanneskirche
+way/207765595,other,manual-label,St. Ägidius
+way/316661097,other,manual-label,St. Johannes Evangelist
+way/936495248,onion,manual-label,Hofkapelle Rauchenberg
+way/265098807,no_tower,manual-label,Lourdes-Grotte
+way/1419074149,onion,manual-label,Maria im Tal
+way/110742079,onion,manual-label,St. Korbinian
+way/331275493,no_tower,manual-label,St. Margaretha
+way/92128222,onion,manual-label,St. Afra Spatzenhausen
+way/198091311,other,manual-label,St. Andreas
+way/41758045,other,manual-label,St. Laurentius
+way/69116802,welsch,manual-label,St. Martin
+way/1110341957,other,manual-label,Schmerzhafte Mittergottes
+way/128339592,onion,manual-label,Filialkirche St. Bartholomäus
+way/36968467,other,manual-label,St. Georg
+way/112490331,onion,manual-label,St. Stephanus
+way/152283272,onion,manual-label,Heilig Kreuz
+way/163868537,other,manual-label,St. Jakobus
+way/289941398,other,manual-label,Schlosskapelle Heilige Drei Könige
+way/32844968,no_tower,manual-label,"Kapelle zur ""Schmerzhaften Muttergottes"""
+way/762273192,onion,manual-label,Hubertuskapelle
+way/285102668,no_tower,manual-label,Kapelle
+way/219556688,onion,manual-label,St. Margaretha
+way/78059839,other,manual-label,Karolinenkirche
+way/252439850,onion,manual-label,Friedhofkapelle Hl. Kreuz
+way/116984500,other,manual-label,St. Leonhard
+way/198932359,no_tower,manual-label,Michaelskirche
+way/246043033,no_tower,manual-label,St. Maria
+way/51269898,onion,manual-label,St. Peter und Paul
+way/775686775,other,manual-label,Eichkapelle
+way/772672099,other,manual-label,St. Vitus
+way/88966343,other,manual-label,St. Peter
+way/200668628,other,manual-label,St. Michael
+way/269875868,other,manual-label,St. Peter und Paul
+way/89355889,onion,manual-label,Heiligste Dreifaltigkeit
+way/108011250,no_tower,manual-label,Kapelle
+way/481812468,other,manual-label,Sankt-Stephan-Kapelle
+way/171690178,other,manual-label,St. Leonhard
+way/334779031,other,manual-label,St. Bartholomäus
+way/334618347,onion,manual-label,St. Anna
+way/95097094,other,manual-label,St. Georg
+way/334759914,onion,manual-label,St. Georg
+way/200945204,other,manual-label,St. Johannes der Täufer
+way/828060507,other,manual-label,Kapelle
+way/89338399,other,manual-label,St. Michael
+way/240164833,no_tower,manual-label,Feldkapelle
+way/336441160,other,manual-label,St. Martin Zell
+way/44604248,other,manual-label,Portiunkulakirche St. Franziskus
+way/92128098,other,manual-label,Kirche St. Johannes Baptist
+way/90073192,other,manual-label,St. Jakobus der Ältere
+way/113664215,other,manual-label,Sankt Michael
+way/69121126,no_tower,manual-label,Allerheiligenkapelle
+node/1726228814,no_tower,manual-label,Wegkapelle
+way/197977267,no_tower,manual-label,Hofkapelle
+node/2495256099,no_tower,manual-label,Wegkapelle
+way/36983180,other,manual-label,Mariä Heimsuchung
+way/464690598,other,manual-label,St. Joseph
+way/83646506,other,manual-label,Nußlberg-Kapelle
+node/14286107749,other,manual-label,St. Jakobus d. Ä.
+way/166162636,other,manual-label,St. Bartholomäus
+way/91007031,other,manual-label,Sankt Georg
+way/88254644,welsch,manual-label,Pfarrkirche St. Laurentius
+way/118119698,no_tower,manual-label,Maria Königin des Friedens
+way/200027246,welsch,manual-label,Erasmuskapelle
+way/147989979,other,manual-label,St. Stephan
+node/3656701779,no_tower,manual-label,Lourdes-Grotte
+way/125088479,onion,manual-label,St. Kastulus
+way/165985309,other,manual-label,St.Ägidius und Nikolaus
+way/116794988,onion,manual-label,St. Peter und Paul
+way/25958759,other,manual-label,Friedhofskirche
+way/680537482,onion,manual-label,St. Benedikt
+way/37375358,other,manual-label,Segenskirche
+way/847270390,no_tower,manual-label,Lourdeskapelle
+way/317982429,no_tower,manual-label,Zu den heiligen 7 Zufluchten
+way/72034954,no_tower,manual-label,Hartkapelle
+way/57382132,other,manual-label,St. Nikolaus
+way/243017859,onion,manual-label,Kapelle St. Josef
+way/1365892122,onion,manual-label,Freikircherl
+way/130782906,onion,manual-label,Mariä unbefleckte Empfängnis
+way/62088379,onion,manual-label,St. Johannes der Täufer
+way/351609373,other,manual-label,Kapelle Linden
+way/39671364,other,manual-label,Christuskirche
+node/347640341,no_tower,manual-label,Daxkapelle
+way/108954553,onion,manual-label,St. Margareta
+way/244871366,welsch,manual-label,Heilig Kreuz
+way/92128140,other,manual-label,Sankt Magnus
+way/119097866,other,manual-label,St. Margaretha
+way/762699119,other,manual-label,St. Antonius von Padua
+way/369388457,other,manual-label,St. Koloman
+way/189370002,other,manual-label,Pfarrkirche Christkönig
+way/93724402,onion,manual-label,St. Nantwein
+way/123173291,other,manual-label,St. Johannes Baptist
+way/89405651,other,manual-label,St. Georg
+way/355780334,other,manual-label,St. Pölten
+way/219439505,dome,manual-label,St. Margaretha
+way/617222835,no_tower,manual-label,Schloßkapelle
+way/103595120,onion,manual-label,Mariä Heimsuchung
+node/2459454628,onion,manual-label,Maria Hilf Kirche
+way/382050188,other,manual-label,Kapelle St. Maria Magdalena
+way/96271797,onion,manual-label,St. Michael
+way/31402955,no_tower,manual-label,Wohnhaus
+way/147371316,onion,manual-label,Töllernkirche St. Johann
+way/287743447,onion,manual-label,St. Maria Sankt Heinrich
+way/110781854,onion,manual-label,Zu Unserer lieben Frau
+way/583975897,no_tower,manual-label,Kreuzwegstation VII VIII IX
+way/652945089,no_tower,manual-label,Quirinskapelle
+way/110779274,welsch,manual-label,St. Johannes
+way/330766356,no_tower,manual-label,Pestkapelle
+way/1350980330,other,manual-label,St. Rupert
+way/39674590,other,manual-label,St. Georg
+way/474865776,other,manual-label,Holzkapelle
+way/310536876,onion,manual-label,St. Jakobus
+node/393428488,other,manual-label,St. Florian
+way/574209987,onion,manual-label,St. Georg
+node/1381703626,no_tower,manual-label,Hoad-Kapelle
+way/819011361,other,manual-label,Maria Schnee
+way/424803703,onion,manual-label,Wallfahrtskirche St.Anton
+way/164510345,onion,manual-label,Sankt-Jakob-Kapelle
+way/460285639,no_tower,manual-label,Kapelle Unterried
+way/1387427473,no_tower,manual-label,Maria Himmelfahrt
+way/116524753,other,manual-label,Mariä Himmelfahrt Nantesbuch
+way/137189826,onion_double,manual-label,St. Ruppert
+way/1148020739,onion,manual-label,Lourdeskapelle
+way/329621436,other,manual-label,Marienkirche
+way/101534588,other,manual-label,St. Jakobus
+way/276040838,other,manual-label,Kapelle Effenstätt
+way/347317212,other,manual-label,St. Michael
+way/91004968,other,manual-label,Mariä Himmelfahrt
+way/195870320,other,manual-label,St. Laurentius
+way/520538713,other,manual-label,St. Laurentius
+way/178696162,no_tower,manual-label,Bauernhof mit Hofkapelle
+way/137704671,other,manual-label,St. Martin
+way/73814014,onion,manual-label,Maria-Hilf-Kapelle
+node/8643307659,other,manual-label,St. Magnus
+way/387201892,no_tower,manual-label,Hl. Antonius
+way/720475313,onion,manual-label,Herz-Jesu-Kirche
+way/158023860,other,manual-label,Apostelkirche
+node/728709808,no_tower,manual-label,Klausenkapelle
+way/844587754,other,manual-label,Kriegergedächtniskapelle
+way/43920277,onion,manual-label,Martin-Luther-Kirche
+way/191061339,other,manual-label,St. Michael
+way/486321733,other,manual-label,Friedhofskapelle
+way/892243887,no_tower,manual-label,Feldkapelle Hub
+way/47074129,onion,manual-label,Wallfahrtskirche Mariä Himmelfahrt
+way/1012971212,other,manual-label,Verklärung Christi
+node/10709960479,skip,manual-label,Winterkapelle
+way/195916393,other,manual-label,St. Johann Nepomuk (Günther)
+way/45108950,onion,manual-label,St. Michael Kochel
+way/1460496412,other,manual-label,St. Sebastian
+way/43759992,other,manual-label,St. Valentin
+way/206988043,onion,manual-label,Hl. Kreuzkirche
+way/50769220,other,manual-label,St. Martin
+way/945248809,no_tower,manual-label,Friedhofskapelle Am Pfarrstadl 4 in Eiselfing (D-1-87-126-1#1)
+way/251911224,onion,manual-label,St. Sebastian
+way/272729634,other,manual-label,Heilig Kreuz
+way/91007043,other,manual-label,St. Martin
+way/99380475,other,manual-label,St. Michael
+way/95406434,other,manual-label,St. Georg
+way/82592255,other,manual-label,Alte Kirche Heilig Kreuz
+way/292047538,welsch,manual-label,St. Georg
+way/206445782,other,manual-label,St. Rupert
+way/305127172,onion,manual-label,Antoniuskapelle
+way/307959060,other,manual-label,Marienkapelle
+node/1347573110,no_tower,manual-label,"Weilerkapelle, sogenannte Pestkapelle"
+way/252793264,no_tower,manual-label,Hofkapelle
+way/53556224,other,manual-label,St. Bartholomäus
+way/244601146,welsch,manual-label,Mariä Himmelfahrt
+way/101523219,onion,manual-label,Christkönigkirche Wildenwart
+way/4935812,other,manual-label,St. Jakob
+way/143105108,welsch,manual-label,Kriegergedächtniskapelle
+way/47322693,other,manual-label,Mariä Geburt
+node/762962343,welsch,manual-label,Mariä Heimsuchung
+way/61044219,other,manual-label,Max-Emanuel-Kapelle
+way/122358282,other,manual-label,Hl. Familie
+way/596118302,other,manual-label,Marienkapelle
+way/113069325,other,manual-label,St. Agatha
+way/319579921,other,manual-label,St. Margaretha (Sölb)
+node/612991996,onion,manual-label,Rosenkranzkapelle
+way/198481993,other,manual-label,St. Peter
+way/87966404,onion,manual-label,St. Maria Magdalena
+way/1537935841,no_tower,manual-label,Wollfeldkapelle
+way/162141386,no_tower,manual-label,Heilandskirche
+way/45284544,onion,manual-label,St. Margareth
+way/50899121,other,manual-label,Kappelkirche
+way/118595913,other,manual-label,Mariä Himmelfahrt
+way/45485908,other,manual-label,St. Michael
+way/360854392,other,manual-label,Marienkapelle
+way/165738427,onion,manual-label,Taufkapelle St. Johannes
+way/288209646,onion,manual-label,St. Martin
+way/27308044,other,manual-label,St. Ulrich
+way/177210707,other,manual-label,St. Quirinus
+way/98284486,other,manual-label,St. Oswald
+way/376814942,other,manual-label,Kapelle
+way/361965088,other,manual-label,St. Antonius
+way/159513212,no_tower,manual-label,Katholische Kapelle
+way/27469001,onion_double,manual-label,St. Nikolaus
+way/110539321,onion,manual-label,Sankt Georg
+way/104831294,other,manual-label,Kapelle Unserer Lieben Frau
+way/409617953,other,manual-label,Kapelle Steingädele
+way/109915666,other,manual-label,St. Margaretha
+way/314317066,other,manual-label,St. Leonhard
+way/110701109,onion_double,manual-label,St. Michael
+way/488329131,other,manual-label,Heilig Kreuz
+way/94217748,other,manual-label,St. Georg
+way/307012371,onion,manual-label,St. Nikolaus
+way/217482138,no_tower,manual-label,Friedenskirche
+way/527297939,onion,manual-label,Frauenkapelle
+way/337237100,other,manual-label,Hl. Anastasia Altjoch
+way/45099129,other,manual-label,St. Sebastian
+way/108953924,other,manual-label,St. Laurentius
+way/338874306,onion,manual-label,Wegkapelle
+way/104784320,other,manual-label,St. Konrad von Parzham
+way/329711012,other,manual-label,St. Stephan
+way/370427207,no_tower,manual-label,Hl. Herz Jesu
+way/334813244,welsch,manual-label,St. Mauritius
+way/95536880,onion,manual-label,Heilig Kreuz
+way/60452683,other,manual-label,Alte Kirche St. Martin
+way/248747159,other,manual-label,Mariae Heimsuchung
+way/1240447823,no_tower,manual-label,
+way/170772836,other,manual-label,St. Vitus
+way/1222994814,no_tower,manual-label,Wegkapelle
+node/774528532,other,manual-label,Zu den sieben Schmerzen Marien
+way/109199908,onion,manual-label,St. Sebastian
+way/113563798,onion,manual-label,s`Ähndl St. Georg
+way/813115449,onion,manual-label,Maria Hilf
+way/414712086,other,manual-label,Sankt Salvator und Sebastian
+way/219436422,onion,manual-label,Pfarrkirche Herz Jesu
+way/1272159057,onion,manual-label,St. Nikolaus
+way/140178107,other,manual-label,Wendelsteinkircherl
+way/1553933159,other,manual-label,Schneekapelle
+way/58294964,other,manual-label,St. Michael
+way/112681825,other,manual-label,St. Martin
+way/693521287,onion,manual-label,St. Margaret
+way/97898674,no_tower,manual-label,Hl. Familie
+way/121477394,onion,manual-label,St. Martin
+node/436502222,no_tower,manual-label,Feldkapelle
+way/106414098,onion_double,manual-label,Mühlfeldkirche
+way/46894300,onion,manual-label,Heuwinklkapelle
+way/224077165,welsch,manual-label,Mariä Himmelfahrt
+way/475513610,other,manual-label,St. Jacobus
+way/118155061,no_tower,manual-label,Stollwerck-Mausoleum
+way/364612252,other,manual-label,Rosenkranzkapelle
+way/164966377,skip,manual-label,St. Ursula
+node/8634467473,other,manual-label,Mariä Heimsuchung
+way/106422939,welsch,manual-label,Kreuzkirche
+way/315035412,welsch,manual-label,Zu den Vierzehn Nothelfern
+way/158023861,other,manual-label,Stiftskirche Heilig Geist
+way/115749259,other,manual-label,St. Anna
+way/844587751,other,manual-label,St. Florian
+way/763348242,onion,manual-label,Lourdeskapelle
+way/103206343,other,manual-label,Kapelle Kiensee
+way/57384714,onion,manual-label,St. Martin
+way/207497222,onion_double,manual-label,Mariä Lichtmeß
+way/1461997614,other,manual-label,Pfarrkirche Maria-Himmelfahrt
+way/35580860,other,manual-label,Peter- und Paul-Kapelle
+way/930940441,other,manual-label,Kleine Weilerkapelle
+way/438254400,other,manual-label,Kreuzkirche
+way/607950844,onion,manual-label,St. Koloman
+way/137957634,no_tower,manual-label,Muttergottes Frauenberg
+way/45574151,onion,manual-label,Kapelle St. Josef
+way/255014495,welsch,manual-label,Mariae Himmelfahrt
+way/191823189,onion,manual-label,Feldkapelle
+way/342493154,welsch,manual-label,Mariä Opferung
+way/102978450,onion,manual-label,St. Martin
+way/298899991,other,manual-label,S1 Kapelle
+way/336765769,other,manual-label,Maria Schutz
+way/109987051,other,manual-label,St. Martin
+way/835511468,other,manual-label,Lourdeskapelle Aufing
+way/145671880,other,manual-label,St. Andreas
+way/87399020,onion,manual-label,St. Martin
+way/89277012,other,manual-label,Zum gegeißelten Heiland
+way/194541488,other,manual-label,St. Georg (Hornstein)
+way/181127517,onion,manual-label,Heilig Kreuz
+way/323749835,other,manual-label,Kapelle
+way/119246297,other,manual-label,St. Erasmus
+way/333141707,onion,manual-label,Zu unserer lieben Frau
+way/95459418,welsch,manual-label,St. Laurentius
+way/1019103560,no_tower,manual-label,Hofkapelle zur schmerzhaften Muttergottes
+way/309983403,welsch,manual-label,St. Johannes Baptist
+way/230756330,other,manual-label,Mariae Heimsuchung
+way/448490991,other,manual-label,St. Vitus
+way/347095700,onion,manual-label,St. Sebastian
+node/1390279119,no_tower,manual-label,Bildstock
+way/169872355,no_tower,manual-label,Hofkapelle
+way/217562121,no_tower,manual-label,Wegkapelle
+way/246730027,no_tower,manual-label,Wieskapelle
+way/227918535,other,manual-label,St. Ursula
+way/72730475,other,manual-label,St. Ulrich
+way/675855779,onion,manual-label,St. Korbinian
+way/308805479,other,manual-label,Sankt Koloman
+way/166324778,onion,manual-label,St. Georg
+way/286653642,onion,manual-label,Mariä Himmelfahrt
+way/112637187,other,manual-label,Kapelle St. Maria
+way/985445109,onion,manual-label,Mariae Heimsuchung
+way/87417014,other,manual-label,St. Andreas
+way/221396462,welsch,manual-label,Mariä Himmelfahrt
+way/191448983,onion,manual-label,Hubkapelle Maria Heimsuchung
+way/93493675,other,manual-label,Seekapelle Hl. Kreuz
+way/280678621,onion,manual-label,Leonhardikapelle
+way/643127283,other,manual-label,Dorfkapelle
+way/182254372,onion,manual-label,Christuskirche
+way/83121491,other,manual-label,Dreifaltigkeitskapelle
+way/198933660,onion,manual-label,Christkönig
+way/240386356,other,manual-label,St. Georg (Alte Kirche)
+way/376814941,other,manual-label,Herz-Jesu-Kapelle
+way/310154318,onion,manual-label,St. Anian
+way/25954974,onion,manual-label,St. Remigius
+way/239096673,other,manual-label,Kapelle Vordergraseck
+way/61317934,other,manual-label,Maria Hilf
+node/289171119,onion,manual-label,St. Leonhard
+way/164967234,other,manual-label,Mariä Himmelfahrt
+way/42369992,onion,manual-label,St. Leonhard in Forst
+way/229047956,onion,manual-label,St. Andreas und Vitus
+way/110781971,no_tower,manual-label,Hofwirtskapelle
+way/262734506,other,manual-label,St. Anian
+way/172411825,other,manual-label,Mariä Himmelfahrt
+way/1052243738,other,manual-label,Emmauskirche
+way/97555600,onion,manual-label,Friedenskirche
+way/56068357,other,manual-label,Pfarrkirche St. Ludwig
+node/310345775,no_tower,manual-label,Pestkapelle
+node/6428859912,no_tower,manual-label,Schleifmühlenkapelle
+way/107291655,other,manual-label,Mariä Geburt
+way/103641881,other,manual-label,St. Sebastiani-Kapelle
+way/168864753,onion,manual-label,St. Jakobus
+way/918949252,other,manual-label,St.-Stephanus-Kapelle
+way/127551970,other,manual-label,Dreifaltigkeitskirche
+way/159271760,onion,manual-label,St. Georg
+node/2040691202,no_tower,manual-label,St. Koloman
+way/99598953,other,manual-label,St. Stefanus und Laurentius
+way/250806298,other,manual-label,St. Peter
+way/146975739,other,manual-label,Wallfahrtskapelle Hl. Kreuz
+way/110892784,other,manual-label,Erlöserkirche
+way/353720836,no_tower,manual-label,Kapelle
+way/47249747,onion,manual-label,Sieben Schmerzen Mariens
+way/103497713,other,manual-label,König-Otto-Kapelle
+way/486995463,no_tower,manual-label,Hofkapelle
+way/318413029,no_tower,manual-label,Wegkapelle
+way/422728539,no_tower,manual-label,Pestkapelle
+way/457716806,onion,manual-label,Wallfahrtskirche St. Maria Magdalena
+way/25195614,onion,manual-label,Basilika Sankt Benedikt
+node/937488009,onion,manual-label,St. Laurentius
+way/166829529,onion,manual-label,Franz-Xaver-Kapelle (Unterammergau)
+way/653679610,no_tower,manual-label,Hofkapelle Aumühl
+way/115654303,onion,manual-label,St. Florian
+way/189313151,onion,manual-label,St. Elisabeth
+way/92421448,other,manual-label,St. Leonhard
+way/202593626,onion,manual-label,St. Martin
+way/105392623,other,manual-label,St. Nikolaus
+way/448210414,other,manual-label,Prinzenkapelle
+way/91795284,other,manual-label,Pfarrkirche St. Michael
+way/163845330,onion,manual-label,St. Johann Baptist
+way/217547815,other,manual-label,St. Leonhard
+way/119893011,other,manual-label,St. Georg
+way/94217754,other,manual-label,Kindswieskapelle
+way/80201937,welsch,manual-label,Mariae Verkündigung Reutberg
+way/113355376,onion,manual-label,St. Leonhard
+way/105755158,onion,manual-label,St. Johannes der Täufer
+way/163868523,onion_double,manual-label,Heilig-Kreuz-Kirche
+way/747134744,no_tower,manual-label,Rastkapelle
+way/334139973,skip,manual-label,Dreifaltigkeitskapelle (Wildsteig)
+way/110543770,onion,manual-label,Heilig Kreuz
+way/87287609,onion,manual-label,St. Martin
+way/368742625,other,manual-label,St. Peter
+way/200637255,onion,manual-label,St. Leonhard
+way/100035149,other,manual-label,Stadtpfarrkirche Mariä Himmelfahrt
+way/24406295,other,manual-label,Pfarrkirche St. Laurentius
+way/958159009,other,manual-label,Kapelle
+way/143368692,other,manual-label,Wallfahrtskirche Mariä Himmelfahrt
+way/200420357,onion,manual-label,St. Andreas Unterau
+way/198142869,onion,manual-label,St. Anton
+way/240386362,other,manual-label,St. Georg
+way/129265335,no_tower,manual-label,St. Maria
+way/238937952,other,manual-label,St. Peter
+way/60684933,other,manual-label,Dreifaltigkeitskirche
+way/115793399,other,manual-label,Maria Königin
+way/693662219,onion,manual-label,St. Martin
+way/4935842,other,manual-label,Frauenkirche
+way/182164445,no_tower,manual-label,Ehem. Domstiftskirche
+way/307959121,dome,manual-label,St. Laurentius und Sixtus
+way/45269897,other,manual-label,St. Ulrich
+way/879874073,other,manual-label,St. Georg
+way/112396020,other,manual-label,St. Leonhard
+way/135249285,other,manual-label,Erlöserkirche
+way/100677180,other,manual-label,St. Nikolaus
+way/1434007085,no_tower,manual-label,Kapelle
+way/524749533,onion,manual-label,St.-Anna-Kapelle Linderhof
+way/1147768588,onion,manual-label,Klaiser Kapelle
+way/166868471,onion,manual-label,Katholische Pfarrkirche Sankt Nikolaus
+way/206852143,other,manual-label,Apostel-Petrus-Kirche
+way/143105962,other,manual-label,hist. Holzkapelle
+way/88229827,onion,manual-label,St. Peter und Paul
+node/3160203825,welsch,manual-label,Pfarrkirche St.Tertulin
+way/265769822,welsch,manual-label,Sankt Nikolaus
+way/45029360,onion,manual-label,Kapelle
+way/109460634,onion,manual-label,St. Johann Baptist
+way/540498733,other,manual-label,St. Georg
+node/286672221,no_tower,manual-label,Kapelle
+way/93087873,other,manual-label,St. Magdalena
+way/81639634,onion,manual-label,Mariä Heimsuchung
+way/160399225,no_tower,manual-label,Marienkapelle
+node/456095439,onion,manual-label,Josefs Kapelle
+node/12648291350,no_tower,manual-label,Waldkapelle
+way/50692219,other,manual-label,Fatima-Kapelle
+way/27453314,dome,manual-label,St. Peter & Paul
+way/112395990,other,manual-label,Rosengassenkapelle
+way/205261292,other,manual-label,St. Stephanus
+way/345572947,other,manual-label,Muttergotteskapelle
+way/407042961,other,manual-label,Rastkapelle
+way/658373009,welsch,manual-label,St. Nikolaus
+way/822460728,onion,manual-label,Nikolauskapelle
+way/87384879,onion,manual-label,Pfarrkirxhe St. Michael
+way/100688508,welsch,manual-label,St. Jakob
+way/323304386,other,manual-label,Brunnenkapelle
+way/765537139,onion,manual-label,St. Peter und Paul
+way/125104953,no_tower,manual-label,St Leonhard
+way/155321215,no_tower,manual-label,Hofkapelle

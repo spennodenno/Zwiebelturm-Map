@@ -1,0 +1,170 @@
+/* Layout idea: the map is the page; one quiet panel top-left (title + legend), one info card on the right.
+   Two themes: dark (default) and light, switched with data-theme on <html> (see the toggle in the panel). */
+:root {
+  color-scheme: dark;
+  --void: #07090b;        /* everything outside the configured countries */
+  --land: #141a20;        /* configured countries */
+  --border: #5a6675;      /* their outlines */
+  --panel: rgba(16, 20, 25, 0.92);
+  --sheet: #11161b;       /* opaque surface (about dialog) */
+  --line: #262d36;
+  --text: #e7eaee;
+  --muted: #97a1ad;
+  --accent: #ffb000;      /* the onion-dome amber */
+  --sel: #ffffff;         /* ring around the selected church */
+  --hover: rgba(255, 255, 255, 0.06);
+  --scrim: rgba(7, 9, 11, 0.8);
+  --media: #000;          /* behind photos */
+  --code: #000;
+  --ctrl-filter: invert(1) brightness(0.85);
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --void: #dde2e8;
+  --land: #f2f3f0;
+  --border: #8b97a4;
+  --panel: rgba(255, 255, 255, 0.93);
+  --sheet: #ffffff;
+  --line: #d3d9e0;
+  --text: #1c2229;
+  --muted: #5d6874;
+  --accent: #9a5a00;      /* darker amber: readable on white */
+  --sel: #11161b;
+  --hover: rgba(0, 0, 0, 0.06);
+  --scrim: rgba(255, 255, 255, 0.85);
+  --media: #e8ebef;
+  --code: #e8ebef;
+  --ctrl-filter: none;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--void); color: var(--text); font: 14px/1.45 var(--font-body); overflow: hidden; }
+#map { position: absolute; inset: 0; background: var(--void); }
+a { color: var(--accent); text-underline-offset: 2px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fine { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+.linkish { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer;
+  text-decoration: underline; text-underline-offset: 2px; font-size: 12px; }
+.linkish[hidden] { display: none; }
+
+#panel, #card {
+  position: absolute; z-index: 2; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; backdrop-filter: blur(6px);
+}
+#panel { top: 16px; left: 16px; width: 300px; max-width: calc(100% - 32px); padding: 14px 16px;
+  max-height: calc(100% - 32px); overflow-y: auto; }
+#panel header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+h1 { font: 600 22px/1.15 var(--font-display); letter-spacing: 0.01em; margin: 0; text-wrap: balance; }
+.tools { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+.tool { background: none; border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px;
+  color: var(--muted); cursor: pointer; font-size: 12px; min-height: 24px;
+  display: inline-flex; align-items: center; justify-content: center; }
+.tool:hover { color: var(--text); border-color: var(--border); }
+.tool svg { display: block; }
+#lede { margin: 6px 0 10px; color: var(--muted); }
+#lede b { color: var(--text); font-variant-numeric: tabular-nums; }
+summary { cursor: pointer; color: var(--muted); font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 6px; }
+#legend, .toggles { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.toggles button { display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px;
+  width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 5px 6px; cursor: pointer; }
+.toggles button:hover { background: var(--hover); }
+.toggles button[aria-pressed="false"] { opacity: 0.38; }
+
+/* legend: colour swatch (opens the colour picker) + button that shows / hides the category */
+#legend li:not(.sep) { display: grid; grid-template-columns: 22px 1fr; align-items: center; }
+#legend .swatch { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; padding: 0; margin: 0 0 0 6px;
+  border: 0; background: none; border-radius: 50%; cursor: pointer; }
+#legend .swatch::-webkit-color-swatch-wrapper { padding: 0; }
+#legend .swatch::-webkit-color-swatch { border: 1px solid var(--line); border-radius: 50%; }
+#legend .swatch::-moz-color-swatch { border: 1px solid var(--line); border-radius: 50%; }
+#legend li.off .swatch { opacity: 0.38; }
+#legend button { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px;
+  width: 100%; text-align: left; background: none; border: 0; border-radius: 6px; padding: 5px 6px; cursor: pointer; }
+#legend button:hover { background: var(--hover); }
+#legend .n { color: var(--muted); font-variant-numeric: tabular-nums; }
+#legend button[aria-pressed="false"] { opacity: 0.38; }
+#legend button[aria-pressed="false"] .label { text-decoration: line-through; }
+#legend .sep { height: 1px; background: var(--line); margin: 5px 0; }
+.foot { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+
+#card { top: 16px; right: 16px; bottom: 16px; width: 380px; max-width: calc(100% - 32px);
+  overflow-y: auto; padding: 0; }
+#card[hidden] { display: none; }
+#card-close { position: sticky; top: 8px; float: right; margin: 8px 8px -38px 0; z-index: 3; width: 30px; height: 30px;
+  border-radius: 50%; border: 1px solid var(--line); background: var(--scrim); cursor: pointer;
+  font-size: 18px; line-height: 1; }
+#card figure { margin: 0; background: var(--media); }
+#card figure img { display: block; width: 100%; max-height: 300px; object-fit: cover; }
+#card figcaption { padding: 6px 16px; font-size: 11px; color: var(--muted); background: var(--void); }
+.card-pad { padding: 14px 16px 18px; display: grid; gap: 12px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.06em; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+#card h2 { font: 600 21px/1.2 var(--font-display); margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: -8px 0 0; }
+dl.facts { display: grid; grid-template-columns: minmax(96px, 38%) 1fr; gap: 5px 12px; margin: 0; }
+dl.facts dt { color: var(--muted); }
+dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+.intro { margin: 0; max-width: 65ch; }
+.links { display: flex; flex-wrap: wrap; gap: 6px; }
+.links a { border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; text-decoration: none;
+  color: var(--text); font-size: 13px; }
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+.why { margin: 0; padding-left: 16px; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+#card details { border-top: 1px solid var(--line); padding-top: 10px; }
+#card table { width: 100%; border-collapse: collapse; font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+#card td { padding: 2px 8px 2px 0; vertical-align: top; overflow-wrap: anywhere; }
+#card td:first-child { color: var(--muted); width: 42%; }
+#card h3 { font-size: 12px; font-weight: 600; color: var(--muted); margin: 10px 0 4px; }
+
+#status { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px;
+  max-width: min(440px, calc(100% - 32px)); text-align: center; }
+#status:empty { display: none; }
+#status code { background: var(--code); padding: 1px 6px; border-radius: 4px; }
+
+/* about dialog */
+#about { width: min(680px, calc(100% - 24px)); max-height: calc(100% - 40px); padding: 0; overflow: hidden;
+  background: var(--sheet); color: var(--text); border: 1px solid var(--line); border-radius: 12px; }
+#about[open] { display: flex; flex-direction: column; }
+#about::backdrop { background: rgba(0, 0, 0, 0.55); }
+.about-head { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.about-head h2 { font: 600 20px/1.2 var(--font-display); margin: 0; }
+#about-close { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); background: none;
+  cursor: pointer; font-size: 18px; line-height: 1; flex-shrink: 0; }
+#about-close:hover { border-color: var(--border); }
+#about-body { overflow-y: auto; padding: 6px 18px 20px; }
+#about-body h3 { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase;
+  letter-spacing: 0.08em; margin: 20px 0 6px; }
+#about-body p, #about-body li { max-width: 65ch; }
+#about-body p { margin: 0 0 8px; }
+#about-body ul, #about-body ol { margin: 0 0 8px; padding-left: 20px; }
+#about-body li { margin: 0 0 5px; }
+#about-body .note { color: var(--muted); font-size: 12px; }
+
+.maplibregl-ctrl-attrib { background: var(--scrim) !important; color: var(--muted); }
+.maplibregl-ctrl-attrib, .maplibregl-ctrl-attrib a, .maplibregl-ctrl-attrib-inner { color: var(--muted) !important; }
+.maplibregl-ctrl-attrib-button { filter: var(--ctrl-filter); }
+.maplibregl-ctrl-group { background: var(--panel); border: 1px solid var(--line); }
+.maplibregl-ctrl-group button + button { border-top-color: var(--line); }
+.maplibregl-ctrl button .maplibregl-ctrl-icon { filter: var(--ctrl-filter); }
+.maplibregl-canvas { outline: none; }
+
+@media (max-width: 720px) {
+  #panel { top: 10px; left: 10px; width: 250px; padding: 10px 12px; }
+  h1 { font-size: 18px; }
+  #lede { display: none; }
+  summary { margin: 6px 0 0; }
+  details[open] summary { margin-bottom: 6px; }
+  #card { top: auto; left: 10px; right: 10px; bottom: 10px; width: auto; max-width: none; max-height: 62%; }
+  #card figure img { max-height: 180px; }
+}
+
+h2.section { font: inherit; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin: 12px 0 6px; }
+.toggles .box { width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid var(--muted); background: var(--muted); }
+.toggles button[aria-pressed="false"] .box { background: none; }

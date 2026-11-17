@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zwiebelturm – Bilder labeln</title>
+<style>
+  :root { color-scheme: dark; --bg: #07090b; --panel: #12161b; --line: #262d36; --text: #e7eaee; --muted: #97a1ad; --accent: #ffb000; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 16px; display: grid; gap: 12px; }
+  h1 { font-size: 20px; margin: 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  #photo { width: 100%; max-height: 62vh; object-fit: contain; background: #000; border-radius: 8px; min-height: 240px; }
+  #cats { display: flex; flex-wrap: wrap; gap: 8px; }
+  button { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+  button:hover, button:focus-visible { border-color: var(--accent); outline: none; }
+  button.current { border-color: var(--accent); color: var(--accent); }
+  button.pred:not(.current) { border-style: dashed; border-color: #6d7b8c; }
+  #review-bar { display: none; align-items: center; gap: 10px; flex-wrap: wrap; }
+  input[type=number] { width: 5.5em; font: inherit; color: var(--text); background: #000; border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; }
+  #saved { font-size: 13px; }
+  kbd { background: #000; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; margin-right: 6px; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+  textarea { width: 100%; height: 140px; background: #000; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font: 12px ui-monospace, Consolas, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <div class="row"><h1>Turmdach labeln</h1><span id="progress" class="muted"></span></div>
+  <div id="review-bar" class="muted">
+    <span>Modus: Vorhersagen prüfen (unsicherste zuerst).</span>
+    <label>Nur Konfidenz ≤ <input id="thr" type="number" min="0" max="1" step="0.05" value="0.9"></label>
+    <span id="saved"></span>
+  </div>
+  <img id="photo" alt="" referrerpolicy="no-referrer">
+  <div><strong id="name"></strong> <span id="hint" class="muted"></span></div>
+  <div id="cats"></div>
+  <div class="row">
+    <span class="muted" id="keys">Tasten: Ziffer = Klasse und weiter · ← zurück · → überspringen. Die Labels bleiben in diesem Browser gespeichert.</span>
+    <span><button id="back" type="button">← Zurück</button> <button id="skip" type="button">Überspringen →</button></span>
+  </div>
+  <div class="row"><strong>Export</strong><button id="copy" type="button">CSV kopieren</button></div>
+  <textarea id="csv" readonly aria-label="Labels als CSV"></textarea>
+  <p class="muted" id="exporthint">Inhalt als <code>data/labels.csv</code> im Projektordner speichern. Gleiche Spalten wie <code>data/overrides.csv</code>; Zeilen mit <code>skip</code> gehören nur in die Trainingsdaten.</p>
+</main>
+<script>
+(async function () {
+  const $ = (id) => document.getElementById(id);
+  const REVIEW = new URLSearchParams(location.search).has('review');
+  const KEY = REVIEW ? 'zt-review' : 'zt-labels';
+  let all, rows, cats, labels = {}, i = 0;
+  try { labels = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { labels = {}; }
+  try {
+    all = await (await fetch(REVIEW ? 'label/predictions.json' : 'label/candidates.json')).json();
+    cats = (await (await fetch('data/manifest.json')).json()).categories.filter((c) => c.key !== 'unknown').reverse();
+  } catch (e) {
+    $('name').textContent = REVIEW ? 'Keine Vorhersagen gefunden. Zuerst ausführen: python tools/train_yolo.py predict'
+                                   : 'Keine Kandidaten gefunden. Zuerst ausführen: python tools/make_labelset.py';
+    return;
+  }
+  cats.push({ key: 'no_tower', de: 'Kein Turm', color: '#555' }, { key: 'skip', de: 'Turmdach nicht erkennbar / Innenraum', color: '#333' });
+  if (REVIEW) {
+    document.title = 'Zwiebelturm – Vorhersagen prüfen';
+    document.querySelector('h1').textContent = 'Vorhersagen prüfen';
+    $('review-bar').style.display = 'flex';
+    $('keys').textContent = 'Tasten: Enter = Vorhersage übernehmen · Ziffer = andere Klasse · ← zurück · → überspringen. Gespeichert wird in data/labels-reviewed.csv und data/overrides.csv (nur über python serve.py).';
+    $('exporthint').innerHTML = 'Falls das Speichern nicht klappt (kein <code>serve.py</code>): Inhalt als <code>data/labels-reviewed.csv</code> speichern. Die Karte ändert sich erst mit dem nächsten <code>python build.py</code>.';
+    try {   // churches already reviewed in an earlier session (saved on disk by serve.py)
+      const done = new Set(await (await fetch('/api/reviewed')).json());
+      all = all.filter((r) => !done.has(r.id));
+    } catch (e) { /* no serve.py: browser memory only */ }
+  }
+  cats.forEach((c, k) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.dataset.key = c.key;
+    b.innerHTML = `<kbd>${k + 1}</kbd><span class="dot" style="background:${c.color}"></span>`;
+    b.append(c.de);
+    b.addEventListener('click', () => choose(c.key));
+    $('cats').append(b);
+  });
+  const catName = (k) => (cats.find((c) => c.key === k) || {}).de || k;
+  function apply() {
+    const thr = REVIEW ? parseFloat($('thr').value) : 1;
+    rows = all.filter((r) => !REVIEW || !(thr < 1) || r.conf <= thr);
+    const first = rows.findIndex((r) => !labels[r.id]);
+    i = first < 0 ? 0 : first;
+    show();
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(labels)); } catch (e) { /* private mode */ } }
+  function csv() {
+    const esc = (s) => /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    const src = REVIEW ? 'yolov8-cls-reviewed' : 'manual-label';
+    return 'osm_id,roof,source,note\n' + all.filter((r) => labels[r.id]).map((r) => [r.id, labels[r.id], src, esc(r.name || '')].join(',')).join('\n');
+  }
+  function photoUrl(r) {
+    return r.img || (r.file ? 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(r.file.replace(/ /g, '_')) + '?width=500' : '');
+  }
+  function show() {
+    if (!rows.length) {
+      $('name').textContent = REVIEW ? 'Nichts zu prüfen (Konfidenz-Grenze erhöhen oder neu vorhersagen).' : 'Keine Kandidaten.';
+      $('photo').removeAttribute('src'); $('hint').textContent = ''; $('progress').textContent = '0 / 0'; return;
+    }
+    const r = rows[i];
+    $('photo').src = photoUrl(r);
+    $('name').textContent = r.name || r.id;
+    $('hint').textContent = REVIEW
+      ? `${r.id} · Vorhersage: ${catName(r.pred)} (${Math.round(r.conf * 100)} %)`
+      : `${r.id} · bisher: ${r.roof}${r.why ? ' (' + r.why + ')' : ''}`;
+    $('progress').textContent = `${i + 1} / ${rows.length} · ${Object.keys(labels).length} gelabelt`;
+    for (const b of $('cats').children) {
+      b.classList.toggle('current', labels[r.id] === b.dataset.key);
+      b.classList.toggle('pred', REVIEW && r.pred === b.dataset.key);
+    }
+    $('csv').value = csv();
+  }
+  function saved(msg, ok) { $('saved').textContent = msg; $('saved').style.color = ok ? '#7bd88f' : '#ff7a7a'; }
+  function send(r, key) {
+    fetch('/api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: r.id, roof: key, name: r.name || '' }) })
+      .then((res) => res.json().then((j) => { if (!res.ok) throw new Error(j.error || res.status); return j; }))
+      .then((j) => saved(`gespeichert (${r.id}: ${key}; Override: ${j.overrides})`, true))
+      .catch((e) => saved(`NICHT gespeichert (${e.message}). Läuft python serve.py? Sonst CSV unten verwenden.`, false));
+  }
+  function move(d) { if (rows.length) { i = Math.min(rows.length - 1, Math.max(0, i + d)); show(); } }
+  function choose(key) {
+    if (!rows.length) return;
+    const r = rows[i];
+    labels[r.id] = key; save();
+    if (REVIEW) send(r, key);
+    if (i < rows.length - 1) i++;
+    show();
+  }
+  $('back').addEventListener('click', () => move(-1));
+  $('skip').addEventListener('click', () => move(1));
+  $('thr').addEventListener('change', apply);
+  $('copy').addEventListener('click', () => { $('csv').select(); navigator.clipboard.writeText($('csv').value).catch(() => {}); });
+  document.addEventListener('keydown', (ev) => {
+    if (ev.target.tagName === 'INPUT' || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+    if (ev.key === 'ArrowLeft') move(-1);
+    else if (ev.key === 'ArrowRight') move(1);
+    else if (ev.key === 'Enter' && REVIEW && rows.length) { ev.preventDefault(); choose(rows[i].pred); }
+    else if (/^[1-9]$/.test(ev.key) && cats[+ev.key - 1]) choose(cats[+ev.key - 1].key);
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
