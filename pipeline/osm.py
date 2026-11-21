@@ -42,6 +42,10 @@ class OverpassOverload(Exception):
     pass
 
 
+class ConfigError(Exception):
+    """A mistake in config.toml (e.g. no OSM relation for a region): retrying cannot help."""
+
+
 def _query(cfg: dict, ql: str) -> dict:
     """Runs one query, rotating through the configured servers."""
     last: Exception | None = None
@@ -202,7 +206,7 @@ def fetch_region(cfg: dict, region: dict, cache_dir: Path, refresh=False) -> dic
         box = _postpass(cfg, "SELECT ST_XMin(g) AS w, ST_YMin(g) AS s, ST_XMax(g) AS e, ST_YMax(g) AS n "
                              f"FROM (SELECT ST_Extent(geom) AS g FROM {b} x) y")
         if not box or box[0]["w"] is None:
-            raise SystemExit(f"Wikipedia region '{region['id']}': no OSM relation matches {region['osm_tags']}")
+            raise ConfigError(f"Wikipedia region '{region['id']}': no OSM relation matches {region['osm_tags']}")
         bb = box[0]
         rows = _postpass(cfg, f"SELECT p.osm_type, p.osm_id FROM postpass_pointpolygon p, {b} c "
                               f"WHERE p.geom && ST_MakeEnvelope({bb['w']},{bb['s']},{bb['e']},{bb['n']},4326) "
@@ -214,7 +218,7 @@ def fetch_region(cfg: dict, region: dict, cache_dir: Path, refresh=False) -> dic
     obj = _query(cfg, region_query(region["osm_tags"], 300))
     rels = [el for el in obj["elements"] if el["type"] == "relation" and "bounds" in el]
     if not rels:
-        raise SystemExit(f"Wikipedia region '{region['id']}': no OSM relation matches {region['osm_tags']}")
+        raise ConfigError(f"Wikipedia region '{region['id']}': no OSM relation matches {region['osm_tags']}")
     b = rels[0]["bounds"]
     ids = [f"{el['type']}/{el['id']}" for el in obj["elements"] if "bounds" not in el]
     result = {"bbox": [b["minlon"], b["minlat"], b["maxlon"], b["maxlat"]], "ids": ids,

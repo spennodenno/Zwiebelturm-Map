@@ -31,13 +31,41 @@ def _chunks(seq, n):
         yield seq[i:i + n]
 
 
-def _get(cache: Path, base: str, params: dict):
-    return net.cached_json(cache, base + "?" + urllib.parse.urlencode(params), min_interval=1.0)
+def _get(cache: Path, base: str, params: dict, tries: int = 12):
+    url = base + "?" + urllib.parse.urlencode(params)
+    try:
+        return net.cached_json(cache, url, min_interval=1.0, tries=tries)
+    except ValueError as e:
+        # HTTP 200 but the JSON is cut off or garbled (the query service ran out of time while it was
+        # streaming the answer): treated like a timeout, so a big box is split and a region is listed as failed
+        raise net.HttpError(504, url, f"answer is not valid JSON ({e})") from e
 
 
 # ---------- Wikidata ----------
 
-def sparql_candidates(cache: Path, bbox, classes, languages) -> list[dict]:
+_OVERLOAD = (500, 502, 503, 504)
+
+
+def sparql_candidates(cache: Path, bbox, classes, languages, split_depth: int = 2, tries: int = 3) -> list[dict]:
+    """Church items with coordinates inside `bbox`. A box that the query service cannot answer in
+    time (HTTP 5xx after `tries` attempts) is split into four and each quarter asked separately,
+    up to `split_depth` levels deep – so even a very large region ends up as many small queries."""
+    try:
+        return _sparql_box(cache, bbox, classes, languages, tries)
+    except net.HttpError as e:
+        if e.status not in _OVERLOAD or split_depth <= 0:
+            raise
+    w, s, e_, n = bbox
+    mx, my = (w + e_) / 2, (s + n) / 2
+    print(f"    Wikidata: box {w:.3f},{s:.3f},{e_:.3f},{n:.3f} not answered in time – splitting into 4")
+    out: dict[str, dict] = {}
+    for b in ((w, s, mx, my), (mx, s, e_, my), (w, my, mx, n), (mx, my, e_, n)):
+        for c in sparql_candidates(cache, b, classes, languages, split_depth - 1, tries):
+            out.setdefault(c["qid"], c)
+    return list(out.values())
+
+
+def _sparql_box(cache: Path, bbox, classes, languages, tries: int) -> list[dict]:
     w, s, e, n = bbox
     values = " ".join(f"wd:{c}" for c in classes)
     q = f"""SELECT DISTINCT ?item ?itemLabel ?loc WHERE {{
@@ -50,7 +78,7 @@ def sparql_candidates(cache: Path, bbox, classes, languages) -> list[dict]:
   ?item wdt:P31/wdt:P279* ?cls .
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{','.join(languages)}". }}
 }}"""
-    data = _get(cache, SPARQL, {"query": q, "format": "json"})
+    data = _get(cache, SPARQL, {"query": q, "format": "json"}, tries=tries)
     out = {}
     for b in data["results"]["bindings"]:
         m = re.match(r"Point\(([-\d.eE]+) ([-\d.eE]+)\)", b["loc"]["value"])
@@ -313,13 +341,30 @@ def _qid(value: str | None) -> str | None:
 
 
 def enrich_region(region: dict, records: list[dict], wcfg: dict, osm_cfg: dict, cache_dir: Path,
-                  out_dir: Path, refresh=False) -> dict:
-    """Adds `wd` (and possibly a roof type) to the records inside the region. Returns stats."""
+                  out_dir: Path, refresh=False, done: set | None = None) -> dict:
+    """Adds `wd` (and possibly a roof type) to the records inside the region. Returns stats.
+
+    A region is either an OSM boundary (`osm_tags`) or a tile (`tile = True`, `core` = [w, s, e, n],
+    `bbox` = the core plus a small margin for the match radius). A tile takes the records that lie in
+    its core and are not in `done` (records of explicit regions that were processed before).
+    `done` collects the ids of every record this call has processed."""
     cache = cache_dir / "wiki"
-    languages = wcfg["languages"]
-    info = osm.fetch_region(osm_cfg, region, cache_dir, refresh)
-    in_region = set(info["ids"])
-    local = [r for r in records if in_region.intersection(r["ids"])]
+    languages = region.get("languages") or wcfg["languages"]     # tiles carry the editions of their country
+    if region.get("tile"):
+        w, s, e, n = region["core"]
+        info = {"bbox": region["bbox"]}
+        local = [r for r in records if s <= r["lat"] < n and w <= r["lon"] < e
+                 and not (done is not None and r["id"] in done)]
+    else:
+        info = osm.fetch_region(osm_cfg, region, cache_dir, refresh)
+        in_region = set(info["ids"])
+        local = [r for r in records if in_region.intersection(r["ids"])]
+    if done is not None:
+        done.update(r["id"] for r in local)
+    if region.get("tile") and not local:
+        return {"id": region["id"], "label": region["label"], "bbox": info["bbox"], "churches": 0,
+                "with_denkmal_text": 0, "roof_from_denkmal": 0, "matched": 0, "by_tag": 0,
+                "by_coordinates": 0, "with_article": 0, "with_photo": 0, "roof_from_text": 0}
 
     # exact matches through the OSM wikidata tag
     assigned: dict[str, dict] = {}
@@ -329,7 +374,8 @@ def enrich_region(region: dict, records: list[dict], wcfg: dict, osm_cfg: dict, 
             assigned[r["id"]] = {"qid": q, "how": "OSM wikidata tag", "dist": None}
     taken = {a["qid"] for a in assigned.values()}
     skip = re.compile("|".join(wcfg.get("exclude_labels") or ["$^"]), re.I)
-    candidates = [c for c in sparql_candidates(cache, info["bbox"], wcfg["classes"], languages)
+    candidates = [c for c in sparql_candidates(cache, info["bbox"], wcfg["classes"], languages,
+                                                split_depth=wcfg.get("sparql_split_depth", 2))
                   if c["qid"] not in taken and not skip.search(c.get("label") or "")]
     free = [r for r in local if r["id"] not in assigned]
     assigned.update(match(candidates, free, wcfg["match_radius_m"]))
@@ -374,7 +420,7 @@ def enrich_region(region: dict, records: list[dict], wcfg: dict, osm_cfg: dict, 
     # Bavarian monument list texts: joined by D-number (OSM ref:BLfD), else by coordinates
     n_denkmal = n_denkmal_roof = 0
     if wcfg.get("denkmal_lists", True) and "de" in languages:
-        gemeinden = set(osm.region_municipalities(osm_cfg, region, cache_dir))
+        gemeinden = set(osm.region_municipalities(osm_cfg, region, cache_dir)) if region.get("osm_tags") else set()
         # the municipality's Wikipedia title disambiguates names ("Altenstadt (Oberbayern)")
         p131 = {c["mainsnak"]["datavalue"]["value"].get("id") for e in entities.values()
                 for c in _best_statements(e, "P131")} - {None}

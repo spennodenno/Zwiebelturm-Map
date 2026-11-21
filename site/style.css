@@ -168,3 +168,13 @@ dl.facts dd { margin: 0; overflow-wrap: anywhere; }
 h2.section { font: inherit; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin: 12px 0 6px; }
 .toggles .box { width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid var(--muted); background: var(--muted); }
 .toggles button[aria-pressed="false"] .box { background: none; }
+
+/* "Misclassified?" box on the card */
+.fix { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 4px; }
+.fix-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.fix-row button { font: inherit; font-size: 13px; color: var(--text); background: transparent; border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 11px; cursor: pointer; }
+.fix-row button:hover, .fix-row button:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+.fix-row button.cur { border-style: dashed; }
+.fix-row .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+

@@ -147,7 +147,65 @@ def apply_overrides(records: list[dict], rows: list[dict]) -> int:
         roof = (row.get("roof") or "").strip()
         if rec is None or roof not in classify.CAT_INDEX:
             continue
-        rec.update(roof=roof, sub=roof if classify.CATEGORIES[classify.CAT_INDEX[roof]]["bulbous"] else rec.get("sub"))
+        # sub / n_onion / sub_text came from the old roof type; a stale one makes the card contradict the dot
+        rec.update(roof=roof, sub=roof if classify.CATEGORIES[classify.CAT_INDEX[roof]]["bulbous"] else None)
+        rec.pop("sub_text", None)
+        if roof != "onion":
+            rec.pop("n_onion", None)
         rec["src"] = [f"Override ({row.get('source') or 'manual'})" + (f": {row['note']}" if row.get("note") else "")]
         n += 1
     return n
+
+
+MODEL_CLASSES = ("onion", "welsch", "other")          # what the photo model can say about a tower roof
+MODEL_FAMILY = {"onion": "onion", "onion_double": "onion", "welsch": "welsch", "other": "other"}
+
+
+def apply_predictions(records: list[dict], rows: list[dict], min_conf: float = 0.9,
+                      protect: tuple | list = ("dome",)) -> dict:
+    """The photo model's result (data/predictions.csv) replaces the roof type found from OSM tags or article
+    text when its confidence is at least `min_conf`. Manual overrides (data/overrides.csv) are applied afterwards
+    and still win. The model was trained without double onions and domes, so:
+      - a prediction in the same family as the current type (onion / double onion) keeps the more specific type
+        and only adds a note,
+      - the types in `protect` (default: dome) are never overwritten,
+      - "no_tower" (the photo shows no tower) is ignored.
+    Every change is written to the source list of the church, so the info card shows where the type came from."""
+    by_id = {i: r for r in records for i in r["ids"]}
+    stats = {"seen": 0, "filled": 0, "overwritten": 0, "confirmed": 0, "protected": 0}
+    for row in rows:
+        roof = (row.get("roof") or "").strip()
+        if roof not in MODEL_CLASSES:
+            continue
+        try:
+            conf = float((row.get("confidence") or "").replace(",", "."))
+        except ValueError:
+            continue
+        rec = by_id.get((row.get("osm_id") or "").strip())
+        if rec is None or conf < min_conf:
+            continue
+        stats["seen"] += 1
+        cur = rec["roof"]
+        label = classify.CATEGORIES[classify.CAT_INDEX[roof]]["de"]
+        note = f"Modell (Foto): {label}, {conf * 100:.0f} %"
+        src = rec.setdefault("src", [])
+        if MODEL_FAMILY.get(cur) == roof:
+            stats["confirmed"] += 1
+            src.append(note + " – bestätigt")
+            continue
+        if cur in protect:
+            stats["protected"] += 1
+            src.append(note + f" – nicht angewendet ({cur} ist geschützt)")
+            continue
+        old = classify.CATEGORIES[classify.CAT_INDEX[cur]]["de"]
+        rec.update(roof=roof, sub=roof if classify.CATEGORIES[classify.CAT_INDEX[roof]]["bulbous"] else None)
+        rec.pop("sub_text", None)
+        if roof != "onion":
+            rec.pop("n_onion", None)
+        if cur == "unknown":
+            stats["filled"] += 1
+            src.append(note)
+        else:
+            stats["overwritten"] += 1
+            src.append(note + f" – ersetzt: {old}")
+    return stats

@@ -1,8 +1,11 @@
 # generated – rebuilt by build.py (locally or by the GitHub workflow)
 cache/
-site/data/
 site/label/
 __pycache__/
 *.pyc
 data/predictions.csv
 *.pt
+data/failed-regions.txt
+data/build-failures.log
+data/run-all.log
+data/reports.csv

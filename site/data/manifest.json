@@ -1,0 +1,724 @@
+{
+ "generated": "2026-11-19",
+ "n": 299413,
+ "chunk_size": 1000,
+ "bbox": [
+  -5.1328,
+  35.4892,
+  24.1432,
+  55.0653
+ ],
+ "categories": [
+  {
+   "key": "unknown",
+   "color": "#3f4955",
+   "bulbous": false,
+   "de": "Turmdach nicht erfasst",
+   "en": "Tower roof not recorded",
+   "count": 270859
+  },
+  {
+   "key": "other",
+   "color": "#8d97a3",
+   "bulbous": false,
+   "de": "Andere Turmform (Spitzhelm, Satteldach …)",
+   "en": "Other tower type (spire, saddleback …)",
+   "count": 22389
+  },
+  {
+   "key": "dome",
+   "color": "#2fd0c8",
+   "bulbous": true,
+   "de": "Kuppel",
+   "en": "Dome",
+   "count": 315
+  },
+  {
+   "key": "welsch",
+   "color": "#b388ff",
+   "bulbous": true,
+   "de": "Welsche Haube / Laternenhaube",
+   "en": "Welsch cap / lantern cap",
+   "count": 1851
+  },
+  {
+   "key": "onion",
+   "color": "#ffb000",
+   "bulbous": true,
+   "de": "Zwiebelhaube",
+   "en": "Onion dome",
+   "count": 3953
+  },
+  {
+   "key": "onion_double",
+   "color": "#ff3d7f",
+   "bulbous": true,
+   "de": "Doppelzwiebel",
+   "en": "Double onion dome",
+   "count": 46
+  }
+ ],
+ "shape_labels": {
+  "onion": {
+   "de": "Zwiebelhaube",
+   "en": "onion dome"
+  },
+  "dome": {
+   "de": "Kuppel",
+   "en": "dome"
+  },
+  "pyramidal": {
+   "de": "Pyramidendach / Spitzhelm",
+   "en": "pyramidal roof / spire"
+  },
+  "cone": {
+   "de": "Kegeldach",
+   "en": "conical roof"
+  },
+  "spire": {
+   "de": "Spitzhelm",
+   "en": "spire"
+  },
+  "gabled": {
+   "de": "Satteldach",
+   "en": "gabled (saddleback) roof"
+  },
+  "hipped": {
+   "de": "Walmdach",
+   "en": "hipped roof"
+  },
+  "half-hipped": {
+   "de": "Krüppelwalmdach",
+   "en": "half-hipped roof"
+  },
+  "crosspitched": {
+   "de": "Kreuzdach",
+   "en": "cross-gabled roof"
+  },
+  "flat": {
+   "de": "Flachdach",
+   "en": "flat roof"
+  },
+  "skillion": {
+   "de": "Pultdach",
+   "en": "skillion roof"
+  },
+  "mansard": {
+   "de": "Mansarddach",
+   "en": "mansard roof"
+  },
+  "gambrel": {
+   "de": "Mansardgiebeldach",
+   "en": "gambrel roof"
+  },
+  "round": {
+   "de": "Tonnendach",
+   "en": "barrel roof"
+  },
+  "saltbox": {
+   "de": "Schleppdach",
+   "en": "saltbox roof"
+  }
+ },
+ "countries": [
+  {
+   "iso": "DE",
+   "en": "Germany",
+   "de": "Deutschland",
+   "count": 78465,
+   "by_category": [
+    52178,
+    20592,
+    222,
+    1820,
+    3615,
+    38
+   ]
+  },
+  {
+   "iso": "AT",
+   "en": "Austria",
+   "de": "Österreich",
+   "count": 16985,
+   "by_category": [
+    16472,
+    305,
+    6,
+    7,
+    187,
+    8
+   ]
+  },
+  {
+   "iso": "CH",
+   "en": "Switzerland",
+   "de": "Schweiz",
+   "count": 7403,
+   "by_category": [
+    7055,
+    316,
+    4,
+    3,
+    25,
+    0
+   ]
+  },
+  {
+   "iso": "CZ",
+   "en": "Czechia",
+   "de": "Tschechien",
+   "count": 14816,
+   "by_category": [
+    14435,
+    262,
+    9,
+    16,
+    94,
+    0
+   ]
+  },
+  {
+   "iso": "SI",
+   "en": "Slovenia",
+   "de": "Slowenien",
+   "count": 3405,
+   "by_category": [
+    3393,
+    11,
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "iso": "HU",
+   "en": "Hungary",
+   "de": "Ungarn",
+   "count": 8253,
+   "by_category": [
+    8231,
+    18,
+    2,
+    0,
+    2,
+    0
+   ]
+  },
+  {
+   "iso": "PL",
+   "en": "Poland",
+   "de": "Polen",
+   "count": 26536,
+   "by_category": [
+    26401,
+    122,
+    7,
+    4,
+    2,
+    0
+   ]
+  },
+  {
+   "iso": "IT",
+   "en": "Italy",
+   "de": "Italien",
+   "count": 79464,
+   "by_category": [
+    79120,
+    287,
+    43,
+    0,
+    14,
+    0
+   ]
+  },
+  {
+   "iso": "FR",
+   "en": "France",
+   "de": "Frankreich",
+   "count": 64086,
+   "by_category": [
+    63574,
+    476,
+    21,
+    1,
+    14,
+    0
+   ]
+  }
+ ],
+ "wikipedia_regions": [
+  {
+   "id": "weilheim-schongau",
+   "label": "Landkreis Weilheim-Schongau",
+   "bbox": [
+    10.7156838,
+    47.6159762,
+    11.4304095,
+    47.9548811
+   ],
+   "churches": 276,
+   "with_denkmal_text": 102,
+   "roof_from_denkmal": 41,
+   "matched": 183,
+   "by_tag": 129,
+   "by_coordinates": 54,
+   "with_article": 103,
+   "with_photo": 150,
+   "roof_from_text": 34
+  },
+  {
+   "id": "garmisch-partenkirchen",
+   "label": "Landkreis Garmisch-Partenkirchen",
+   "bbox": [
+    10.8693855,
+    47.3933482,
+    11.421433,
+    47.7370507
+   ],
+   "churches": 181,
+   "with_denkmal_text": 58,
+   "roof_from_denkmal": 40,
+   "matched": 109,
+   "by_tag": 73,
+   "by_coordinates": 36,
+   "with_article": 66,
+   "with_photo": 100,
+   "roof_from_text": 21
+  },
+  {
+   "id": "bad-toelz-wolfratshausen",
+   "label": "Landkreis Bad Tölz-Wolfratshausen",
+   "bbox": [
+    11.2628115,
+    47.4951069,
+    11.6801787,
+    47.9802069
+   ],
+   "churches": 258,
+   "with_denkmal_text": 71,
+   "roof_from_denkmal": 52,
+   "matched": 192,
+   "by_tag": 114,
+   "by_coordinates": 78,
+   "with_article": 85,
+   "with_photo": 144,
+   "roof_from_text": 19
+  },
+  {
+   "id": "miesbach",
+   "label": "Landkreis Miesbach",
+   "bbox": [
+    11.5979836,
+    47.5812089,
+    12.0625112,
+    47.9432259
+   ],
+   "churches": 247,
+   "with_denkmal_text": 33,
+   "roof_from_denkmal": 15,
+   "matched": 175,
+   "by_tag": 127,
+   "by_coordinates": 48,
+   "with_article": 82,
+   "with_photo": 129,
+   "roof_from_text": 46
+  },
+  {
+   "id": "rosenheim",
+   "label": "Landkreis Rosenheim",
+   "bbox": [
+    11.8014099,
+    47.6008901,
+    12.4437259,
+    48.1431097
+   ],
+   "churches": 565,
+   "with_denkmal_text": 157,
+   "roof_from_denkmal": 119,
+   "matched": 360,
+   "by_tag": 242,
+   "by_coordinates": 118,
+   "with_article": 162,
+   "with_photo": 267,
+   "roof_from_text": 35
+  },
+  {
+   "id": "traunstein",
+   "label": "Landkreis Traunstein",
+   "bbox": [
+    12.323494,
+    47.6251006,
+    12.8867277,
+    48.1639534
+   ],
+   "churches": 523,
+   "with_denkmal_text": 107,
+   "roof_from_denkmal": 22,
+   "matched": 283,
+   "by_tag": 176,
+   "by_coordinates": 107,
+   "with_article": 100,
+   "with_photo": 140,
+   "roof_from_text": 60
+  },
+  {
+   "id": "ostallgaeu",
+   "label": "Landkreis Ostallgäu",
+   "bbox": [
+    10.324898,
+    47.5139211,
+    10.9538737,
+    48.1114233
+   ],
+   "churches": 519,
+   "with_denkmal_text": 3,
+   "roof_from_denkmal": 0,
+   "matched": 362,
+   "by_tag": 286,
+   "by_coordinates": 76,
+   "with_article": 176,
+   "with_photo": 362,
+   "roof_from_text": 107
+  },
+  {
+   "id": "landsberg-am-lech",
+   "label": "Landkreis Landsberg am Lech",
+   "bbox": [
+    10.7483766,
+    47.8422086,
+    11.170718,
+    48.2377021
+   ],
+   "churches": 237,
+   "with_denkmal_text": 65,
+   "roof_from_denkmal": 17,
+   "matched": 199,
+   "by_tag": 159,
+   "by_coordinates": 40,
+   "with_article": 100,
+   "with_photo": 178,
+   "roof_from_text": 60
+  },
+  {
+   "id": "altoetting",
+   "label": "Landkreis Altötting",
+   "bbox": [
+    12.5422168,
+    48.0444937,
+    12.9442137,
+    48.3584345
+   ],
+   "churches": 239,
+   "with_denkmal_text": 56,
+   "roof_from_denkmal": 10,
+   "matched": 168,
+   "by_tag": 95,
+   "by_coordinates": 73,
+   "with_article": 51,
+   "with_photo": 71,
+   "roof_from_text": 27
+  },
+  {
+   "id": "berchtesgadener-land",
+   "label": "Landkreis Berchtesgadener Land",
+   "bbox": [
+    12.6958024,
+    47.4633962,
+    13.0989358,
+    47.9626028
+   ],
+   "churches": 272,
+   "with_denkmal_text": 59,
+   "roof_from_denkmal": 32,
+   "matched": 171,
+   "by_tag": 93,
+   "by_coordinates": 78,
+   "with_article": 79,
+   "with_photo": 113,
+   "roof_from_text": 24
+  },
+  {
+   "id": "dachau",
+   "label": "Landkreis Dachau",
+   "bbox": [
+    11.1098916,
+    48.2011354,
+    11.58216,
+    48.4553817
+   ],
+   "churches": 247,
+   "with_denkmal_text": 104,
+   "roof_from_denkmal": 74,
+   "matched": 193,
+   "by_tag": 165,
+   "by_coordinates": 28,
+   "with_article": 92,
+   "with_photo": 165,
+   "roof_from_text": 23
+  },
+  {
+   "id": "ebersberg",
+   "label": "Landkreis Ebersberg",
+   "bbox": [
+    11.7476953,
+    47.9310765,
+    12.100147,
+    48.2261809
+   ],
+   "churches": 218,
+   "with_denkmal_text": 66,
+   "roof_from_denkmal": 45,
+   "matched": 168,
+   "by_tag": 143,
+   "by_coordinates": 25,
+   "with_article": 76,
+   "with_photo": 133,
+   "roof_from_text": 9
+  },
+  {
+   "id": "eichstaett",
+   "label": "Landkreis Eichstätt",
+   "bbox": [
+    10.9371879,
+    48.7327225,
+    11.7442081,
+    49.0876959
+   ],
+   "churches": 409,
+   "with_denkmal_text": 85,
+   "roof_from_denkmal": 26,
+   "matched": 303,
+   "by_tag": 263,
+   "by_coordinates": 40,
+   "with_article": 108,
+   "with_photo": 240,
+   "roof_from_text": 31
+  },
+  {
+   "id": "erding",
+   "label": "Landkreis Erding",
+   "bbox": [
+    11.7311725,
+    48.1396804,
+    12.255264,
+    48.4547937
+   ],
+   "churches": 294,
+   "with_denkmal_text": 93,
+   "roof_from_denkmal": 49,
+   "matched": 235,
+   "by_tag": 228,
+   "by_coordinates": 7,
+   "with_article": 128,
+   "with_photo": 212,
+   "roof_from_text": 47
+  },
+  {
+   "id": "freising",
+   "label": "Landkreis Freising",
+   "bbox": [
+    11.492617,
+    48.2657211,
+    12.019424,
+    48.6163175
+   ],
+   "churches": 271,
+   "with_denkmal_text": 110,
+   "roof_from_denkmal": 36,
+   "matched": 210,
+   "by_tag": 169,
+   "by_coordinates": 41,
+   "with_article": 139,
+   "with_photo": 186,
+   "roof_from_text": 40
+  },
+  {
+   "id": "fuerstenfeldbruck",
+   "label": "Landkreis Fürstenfeldbruck",
+   "bbox": [
+    10.9930275,
+    48.0877067,
+    11.4128816,
+    48.2967233
+   ],
+   "churches": 192,
+   "with_denkmal_text": 56,
+   "roof_from_denkmal": 25,
+   "matched": 128,
+   "by_tag": 85,
+   "by_coordinates": 43,
+   "with_article": 85,
+   "with_photo": 107,
+   "roof_from_text": 28
+  },
+  {
+   "id": "muehldorf",
+   "label": "Landkreis Mühldorf am Inn",
+   "bbox": [
+    12.0319511,
+    48.0830104,
+    12.6095657,
+    48.4297032
+   ],
+   "churches": 346,
+   "with_denkmal_text": 73,
+   "roof_from_denkmal": 15,
+   "matched": 215,
+   "by_tag": 144,
+   "by_coordinates": 71,
+   "with_article": 86,
+   "with_photo": 102,
+   "roof_from_text": 50
+  },
+  {
+   "id": "muenchen-landkreis",
+   "label": "Landkreis München",
+   "bbox": [
+    11.3851496,
+    47.9159284,
+    11.8520861,
+    48.2991862
+   ],
+   "churches": 233,
+   "with_denkmal_text": 31,
+   "roof_from_denkmal": 13,
+   "matched": 164,
+   "by_tag": 145,
+   "by_coordinates": 19,
+   "with_article": 107,
+   "with_photo": 160,
+   "roof_from_text": 47
+  },
+  {
+   "id": "neuburg-schrobenhausen",
+   "label": "Landkreis Neuburg-Schrobenhausen",
+   "bbox": [
+    10.9474774,
+    48.4638304,
+    11.4570621,
+    48.8233655
+   ],
+   "churches": 218,
+   "with_denkmal_text": 23,
+   "roof_from_denkmal": 3,
+   "matched": 153,
+   "by_tag": 128,
+   "by_coordinates": 25,
+   "with_article": 44,
+   "with_photo": 89,
+   "roof_from_text": 20
+  },
+  {
+   "id": "pfaffenhofen",
+   "label": "Landkreis Pfaffenhofen an der Ilm",
+   "bbox": [
+    11.2949946,
+    48.4062936,
+    11.7198626,
+    48.8142363
+   ],
+   "churches": 265,
+   "with_denkmal_text": 91,
+   "roof_from_denkmal": 71,
+   "matched": 205,
+   "by_tag": 143,
+   "by_coordinates": 62,
+   "with_article": 90,
+   "with_photo": 139,
+   "roof_from_text": 3
+  },
+  {
+   "id": "starnberg",
+   "label": "Landkreis Starnberg",
+   "bbox": [
+    11.128994,
+    47.8199587,
+    11.4334957,
+    48.1364374
+   ],
+   "churches": 144,
+   "with_denkmal_text": 65,
+   "roof_from_denkmal": 13,
+   "matched": 108,
+   "by_tag": 94,
+   "by_coordinates": 14,
+   "with_article": 81,
+   "with_photo": 101,
+   "roof_from_text": 34
+  },
+  {
+   "id": "muenchen-stadt",
+   "label": "Stadt München",
+   "bbox": [
+    11.360777,
+    48.0616244,
+    11.7229099,
+    48.2481162
+   ],
+   "churches": 413,
+   "with_denkmal_text": 8,
+   "roof_from_denkmal": 2,
+   "matched": 243,
+   "by_tag": 227,
+   "by_coordinates": 16,
+   "with_article": 190,
+   "with_photo": 246,
+   "roof_from_text": 67
+  },
+  {
+   "id": "ingolstadt",
+   "label": "Stadt Ingolstadt",
+   "bbox": [
+    11.2559076,
+    48.6838773,
+    11.5034223,
+    48.8228907
+   ],
+   "churches": 64,
+   "with_denkmal_text": 0,
+   "roof_from_denkmal": 0,
+   "matched": 35,
+   "by_tag": 22,
+   "by_coordinates": 13,
+   "with_article": 24,
+   "with_photo": 29,
+   "roof_from_text": 14
+  },
+  {
+   "id": "tiles",
+   "label": "828 Kacheln à 0.25°",
+   "bbox": null,
+   "churches": 76123,
+   "matched": 41603,
+   "by_tag": 34411,
+   "by_coordinates": 7192,
+   "with_article": 24602,
+   "with_photo": 37026,
+   "roof_from_text": 11695,
+   "with_denkmal_text": 0,
+   "roof_from_denkmal": 0
+  }
+ ],
+ "stats": {
+  "osm_objects": 350679,
+  "raw_churches": 311381,
+  "raw_towers": 36336,
+  "raw_roof_parts": 2962,
+  "duplicates_merged": 16650,
+  "standalone_towers": 4682,
+  "onion_roofs_without_church": 157,
+  "roof_from_osm_description": 215,
+  "records": 299413,
+  "predictions": {
+   "min_confidence": 0.9,
+   "seen": 20560,
+   "filled": 12411,
+   "overwritten": 821,
+   "confirmed": 7269,
+   "protected": 59
+  },
+  "overrides_applied": 608
+ }
+}

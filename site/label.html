@@ -20,6 +20,10 @@
   #review-bar { display: none; align-items: center; gap: 10px; flex-wrap: wrap; }
   input[type=number] { width: 5.5em; font: inherit; color: var(--text); background: #000; border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; }
   #saved { font-size: 13px; }
+  a { color: var(--accent); }
+  #check { display: none; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--panel); }
+  #check .verdict { font-size: 16px; font-weight: 600; margin: 4px 0; }
+  #check .ok { color: #7bd88f; } #check .warn { color: var(--accent); } #check .bad { color: #ff7a7a; }
   kbd { background: #000; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; margin-right: 6px; }
   .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
   .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
@@ -31,9 +35,11 @@
   <div class="row"><h1>Turmdach labeln</h1><span id="progress" class="muted"></span></div>
   <div id="review-bar" class="muted">
     <span>Modus: Vorhersagen prüfen (unsicherste zuerst).</span>
-    <label>Nur Konfidenz ≤ <input id="thr" type="number" min="0" max="1" step="0.05" value="0.9"></label>
+    <label><span id="thr-label">Nur Konfidenz ≤</span> <input id="thr" type="number" min="0" max="1" step="0.05" value="0.9"></label>
+    <span id="links"><a href="?review">alle prüfen</a> · <a href="?review&amp;check=onion">Stichprobe: 100 Onion-Vorhersagen</a> · <a href="?queue=reports">Meldungen</a> · <a href="?queue=quick">Schnelländerungen</a></span>
     <span id="saved"></span>
   </div>
+  <div id="check" aria-live="polite"></div>
   <img id="photo" alt="" referrerpolicy="no-referrer">
   <div><strong id="name"></strong> <span id="hint" class="muted"></span></div>
   <div id="cats"></div>
@@ -48,25 +54,31 @@
 <script>
 (async function () {
   const $ = (id) => document.getElementById(id);
-  const REVIEW = new URLSearchParams(location.search).has('review');
-  const KEY = REVIEW ? 'zt-review' : 'zt-labels';
-  let all, rows, cats, labels = {}, i = 0;
+  const params = new URLSearchParams(location.search);
+  const CHECK = params.get('check');                 // e.g. ?review&check=onion: spot check of one predicted class
+  const QUEUE = params.get('queue');                 // ?queue=reports (most reported first) or ?queue=quick (your instant changes)
+  const REVIEW = params.has('review') || !!CHECK || !!QUEUE;
+  const KEY = REVIEW ? 'zt-review' : 'zt-labels';   // queue items share the review store (same decision per church)
+  const SAMPLE = 100, MIN_N = 30, GOOD = 0.95, OK = 0.90;   // verdict thresholds (precision of the checked class)
+  let all, allRaw, rows, cats, labels = {}, i = 0, state = null;
   try { labels = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { labels = {}; }
   try {
-    all = await (await fetch(REVIEW ? 'label/predictions.json' : 'label/candidates.json')).json();
+    all = await (await fetch(QUEUE ? '/api/queue?mode=' + encodeURIComponent(QUEUE) : REVIEW ? 'label/predictions.json' : 'label/candidates.json')).json();
     cats = (await (await fetch('data/manifest.json')).json()).categories.filter((c) => c.key !== 'unknown').reverse();
   } catch (e) {
-    $('name').textContent = REVIEW ? 'Keine Vorhersagen gefunden. Zuerst ausführen: python tools/train_yolo.py predict'
+    $('name').textContent = QUEUE ? 'Warteschlange nicht erreichbar. Läuft python serve.py?' : REVIEW ? 'Keine Vorhersagen gefunden. Zuerst ausführen: python tools/train_yolo.py predict'
                                    : 'Keine Kandidaten gefunden. Zuerst ausführen: python tools/make_labelset.py';
     return;
   }
   cats.push({ key: 'no_tower', de: 'Kein Turm', color: '#555' }, { key: 'skip', de: 'Turmdach nicht erkennbar / Innenraum', color: '#333' });
   if (REVIEW) {
     document.title = 'Zwiebelturm – Vorhersagen prüfen';
-    document.querySelector('h1').textContent = 'Vorhersagen prüfen';
+    document.querySelector('h1').textContent = QUEUE === 'reports' ? 'Meldungen prüfen (meistgemeldete zuerst)' : QUEUE === 'quick' ? 'Schnelländerungen prüfen' : CHECK ? `Stichprobe: ${CHECK}-Vorhersagen` : 'Vorhersagen prüfen';
+    if (QUEUE) { $('thr').parentElement.style.display = 'none'; }
     $('review-bar').style.display = 'flex';
-    $('keys').textContent = 'Tasten: Enter = Vorhersage übernehmen · Ziffer = andere Klasse · ← zurück · → überspringen. Gespeichert wird in data/labels-reviewed.csv und data/overrides.csv (nur über python serve.py).';
+    $('keys').textContent = 'Tasten: Enter = Vorschlag übernehmen · Ziffer = andere Klasse · ← zurück · → überspringen. Gespeichert wird in data/labels-reviewed.csv und data/overrides.csv (nur über python serve.py).';
     $('exporthint').innerHTML = 'Falls das Speichern nicht klappt (kein <code>serve.py</code>): Inhalt als <code>data/labels-reviewed.csv</code> speichern. Die Karte ändert sich erst mit dem nächsten <code>python build.py</code>.';
+    allRaw = all;
     try {   // churches already reviewed in an earlier session (saved on disk by serve.py)
       const done = new Set(await (await fetch('/api/reviewed')).json());
       all = all.filter((r) => !done.has(r.id));
@@ -81,8 +93,61 @@
     $('cats').append(b);
   });
   const catName = (k) => (cats.find((c) => c.key === k) || {}).de || k;
-  function apply() {
-    const thr = REVIEW ? parseFloat($('thr').value) : 1;
+  // ----- spot check: random sample of one predicted class, precision estimate and verdict -----
+  const SKEY = 'zt-check-' + CHECK;
+  const pct = (x) => (x * 100).toFixed(1).replace('.', ',');
+  function loadState() { try { state = JSON.parse(localStorage.getItem(SKEY) || 'null'); } catch (e) { state = null; } }
+  function saveState() { try { localStorage.setItem(SKEY, JSON.stringify(state)); } catch (e) { /* private mode */ } }
+  function drawSample() {
+    const thr = parseFloat($('thr').value);
+    const pool = all.filter((r) => r.pred === CHECK && (!(thr < 1) || r.conf > thr));
+    for (let k = pool.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [pool[k], pool[j]] = [pool[j], pool[k]]; }
+    state = { ids: pool.slice(0, SAMPLE).map((r) => r.id), res: {}, thr, pool: pool.length };
+    saveState();
+  }
+  function wilson(k, n) {
+    const z = 1.96, p = k / n, d = 1 + z * z / n;
+    const c = (p + z * z / (2 * n)) / d, h = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d;
+    return [Math.max(0, c - h), Math.min(1, c + h)];
+  }
+  function renderCheck() {
+    const box = $('check');
+    if (!CHECK || !state) return;
+    box.style.display = 'block';
+    const e = Object.values(state.res), n = e.filter((x) => x.key !== 'skip').length;
+    const unclear = e.length - n, right = e.filter((x) => x.key === x.pred).length, wrong = n - right;
+    const by = {};
+    e.filter((x) => x.key !== 'skip' && x.key !== x.pred).forEach((x) => { by[x.key] = (by[x.key] || 0) + 1; });
+    let html = `<div>Stichprobe aus ${state.pool} ${CHECK}-Vorhersagen mit Konfidenz &gt; ${String(state.thr).replace('.', ',')}: ` +
+      `${e.length} von ${state.ids.length} geprüft · richtig ${right} · falsch ${wrong}` +
+      (wrong ? ` (${Object.entries(by).map(([k, v]) => `${catName(k)} ${v}`).join(', ')})` : '') +
+      (unclear ? ` · nicht erkennbar ${unclear}` : '') + `</div>`;
+    if (n < MIN_N) {
+      html += `<div class="verdict">Noch zu wenige Prüfungen für eine Aussage (mindestens ${MIN_N}).</div>`;
+    } else {
+      const p = right / n, [lo, hi] = wilson(right, n);
+      const cls = p >= GOOD ? 'ok' : p >= OK ? 'warn' : 'bad';
+      const txt = p >= GOOD ? 'Weiter wie bisher: neue Region hinzufügen.'
+        : p >= OK ? 'Grenzfall: nachtrainieren, wenn die Fehler einheitlich sind (immer dieselbe Verwechslung).'
+        : 'Nachtrainieren, bevor du eine neue Region hinzufügst.';
+      html += `<div class="verdict ${cls}">Präzision ${pct(p)} % (95-%-Intervall ${pct(lo)}–${pct(hi)} %)` +
+        `${n < state.ids.length ? ' – vorläufig' : ''}: ${txt}</div>`;
+    }
+    html += `<div class="muted">Das misst nur, wie viele der vorhergesagten ${CHECK} wirklich stimmen. Übersehene Turmdächer (Recall) zeigt nur eine Stichprobe der anderen Klassen: <a href="?review&amp;check=other">other</a> · <a href="?review&amp;check=welsch">welsch</a>. ` +
+      `<button id="resample" type="button">Neue Stichprobe ziehen (setzt die Statistik zurück)</button></div>`;
+    box.innerHTML = html;
+    $('resample').addEventListener('click', () => { drawSample(); apply(true); });
+  }
+  function apply(fresh) {
+    if (CHECK) {
+      $('thr-label').textContent = 'Stichprobe nur aus Konfidenz >';
+      if (!state) drawSample();
+      $('thr').value = state.thr;
+      const byId = Object.fromEntries(all.map((r) => [r.id, r]));
+      rows = state.ids.map((id) => byId[id]).filter((r) => r && !state.res[r.id]);
+      i = 0; show(); renderCheck(); return;
+    }
+    const thr = REVIEW && !QUEUE ? parseFloat($('thr').value) : 1;
     rows = all.filter((r) => !REVIEW || !(thr < 1) || r.conf <= thr);
     const first = rows.findIndex((r) => !labels[r.id]);
     i = first < 0 ? 0 : first;
@@ -98,17 +163,21 @@
     return r.img || (r.file ? 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(r.file.replace(/ /g, '_')) + '?width=500' : '');
   }
   function show() {
-    if (!rows.length) {
-      $('name').textContent = REVIEW ? 'Nichts zu prüfen (Konfidenz-Grenze erhöhen oder neu vorhersagen).' : 'Keine Kandidaten.';
+    if (!rows.length || (CHECK && rows.every((r) => state.res[r.id]))) {
+      $('name').textContent = CHECK ? 'Stichprobe fertig bzw. keine passenden Vorhersagen (Konfidenz-Grenze senken oder neu vorhersagen).'
+        : REVIEW ? (QUEUE ? 'Nichts zu prüfen: die Warteschlange ist leer.' : 'Nichts zu prüfen (Konfidenz-Grenze erhöhen oder neu vorhersagen).') : 'Keine Kandidaten.';
       $('photo').removeAttribute('src'); $('hint').textContent = ''; $('progress').textContent = '0 / 0'; return;
     }
     const r = rows[i];
     $('photo').src = photoUrl(r);
     $('name').textContent = r.name || r.id;
-    $('hint').textContent = REVIEW
+    $('hint').textContent = QUEUE
+      ? `${r.id} · ${QUEUE === 'reports' ? `${r.count} Meldung${r.count === 1 ? '' : 'en'}, vorgeschlagen: ` : 'jetzt auf der Karte: '}${catName(r.pred)} · vorher: ${catName(r.current) || '?'}`
+      : REVIEW
       ? `${r.id} · Vorhersage: ${catName(r.pred)} (${Math.round(r.conf * 100)} %)`
       : `${r.id} · bisher: ${r.roof}${r.why ? ' (' + r.why + ')' : ''}`;
-    $('progress').textContent = `${i + 1} / ${rows.length} · ${Object.keys(labels).length} gelabelt`;
+    $('progress').textContent = CHECK ? `${i + 1} / ${rows.length} offen · ${Object.keys(state.res).length} von ${state.ids.length} geprüft`
+      : `${i + 1} / ${rows.length} · ${Object.keys(labels).length} gelabelt`;
     for (const b of $('cats').children) {
       b.classList.toggle('current', labels[r.id] === b.dataset.key);
       b.classList.toggle('pred', REVIEW && r.pred === b.dataset.key);
@@ -128,13 +197,14 @@
     if (!rows.length) return;
     const r = rows[i];
     labels[r.id] = key; save();
+    if (CHECK) { state.res[r.id] = { pred: r.pred, key }; saveState(); renderCheck(); }
     if (REVIEW) send(r, key);
     if (i < rows.length - 1) i++;
     show();
   }
   $('back').addEventListener('click', () => move(-1));
   $('skip').addEventListener('click', () => move(1));
-  $('thr').addEventListener('change', apply);
+  $('thr').addEventListener('change', () => { if (CHECK) { drawSample(); } apply(); });
   $('copy').addEventListener('click', () => { $('csv').select(); navigator.clipboard.writeText($('csv').value).catch(() => {}); });
   document.addEventListener('keydown', (ev) => {
     if (ev.target.tagName === 'INPUT' || ev.ctrlKey || ev.metaKey || ev.altKey) return;
@@ -143,6 +213,7 @@
     else if (ev.key === 'Enter' && REVIEW && rows.length) { ev.preventDefault(); choose(rows[i].pred); }
     else if (/^[1-9]$/.test(ev.key) && cats[+ev.key - 1]) choose(cats[+ev.key - 1].key);
   });
+  if (CHECK) loadState();
   apply();
 })();
 </script>

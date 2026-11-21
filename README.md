@@ -66,19 +66,75 @@ python serve.py                    # review at http://localhost:8000/label.html?
 and `site/label/predictions.json`. It can be stopped and continued (`--redo` starts over,
 `--limit 50` is a quick test). The review page saves every click through `serve.py` to
 `data/labels-reviewed.csv` (training labels, all classes) and, for roof types the map knows, to
-`data/overrides.csv`; the map changes with the next `python build.py`. Predictions never reach the
-map by themselves.
+`data/overrides.csv`; the map changes with the next `python build.py`.
+
+### Predictions on the map
+
+`build.py` reads `data/predictions.csv` and lets the model set the roof type when its confidence is at
+least `min_confidence` (default 0,9, block `[predictions]` in `config.toml`; `apply = false` switches it off).
+Order of authority: **overrides.csv (your hand and review clicks) > model > OSM tags / article text**.
+Details: `no_tower` predictions are ignored; a prediction of the same family (onion for a double onion)
+keeps the more specific type; types in `protect` (default `dome`) are never overwritten, because the model
+was trained without them. Every change is written to the card under "Where the classification comes from"
+(`Modell (Foto): …, 93 % – ersetzt: …`) and counted in the build output. `run_all.py` ends with an `apply`
+step (a build from the cache) so new predictions reach the map.
+
+## Misclassified? Instant change and reports
+
+Every card has a "Misclassified?" box with the five roof types.
+
+- **You** (`python serve.py`, page at `localhost:8000`): a click changes the church at once. The page recolours
+  the dot, `serve.py` writes the line into `data/overrides.csv` (source `manual-quick`) and
+  `data/quick-changes.csv` (the to-check list). After a reload the change is still shown; after the next
+  `python build.py` it is part of the data. A hand-written line in `overrides.csv` is never replaced
+  (the page says so).
+- **Everybody else** (GitHub Pages has no server): a click opens a prefilled GitHub issue
+  `Meldung: way/123 → onion` in the repository (needs a GitHub account and enabled issues). Reports change nothing.
+
+```
+python tools/fetch_reports.py    # counts the issues → data/reports.csv (every account counts once per proposal)
+python serve.py
+  http://localhost:8000/label.html?queue=reports   # churches by number of reports, most reported first
+  http://localhost:8000/label.html?queue=quick     # your instant changes, newest first
+```
+
+In a queue, Enter confirms the proposed roof type, a digit picks another one. The decision is saved like a
+review click (`labels-reviewed.csv` + override with source `yolov8-cls-reviewed`), so the church leaves the queue
+and becomes a training label.
 
 Photos are not stored: the map card loads them from Wikimedia Commons when it is opened
 (`download_photos = false` in `config.toml`). Only the photos of labeled churches are kept for
 training, in `cache/photos`.
 
+## Other countries on Kaggle
+
+`config.toml` → `[wikipedia.country_languages]` lists the Wikipedia editions per country for the tiles (local
+edition first, then de, en). Germany and Austria keep `[de, en]`. Tiles near a border use the list of the
+country with most churches in the tile. Only `it, fr, cs, pl, sl, hu` have a first text vocabulary for the
+roof type (`KEYWORDS` in `pipeline/classify.py`); other languages still give names, photos, articles and facts.
+
+`kaggle/run_kaggle.py` runs restore → model → probe → build (tiles only) → labelset → predict → package inside a
+Kaggle notebook and always ends with `zwiebel-kaggle-out.zip` (cache + predictions). It stops its own steps after
+`--hours` (default 11; a Kaggle session ends after 12 h and keeps the output only if the run ends by itself).
+A second run continues where the first stopped when the first run's output is attached as input.
+
+On your PC:
+
+```
+py tools/merge_cache.py zwiebel-kaggle-out.zip    # copies new cache files, extends the stores, adds predictions
+# config.toml: [wikipedia.tiles] countries = ["DE", "AT", "CH", "CZ", "SI", "HU", "PL", "IT", "FR"]
+py build.py                                       # from the cache: minutes
+py run_all.py --steps labelset,predict,apply      # only if the PC should classify the rest of the photos
+```
+
+Every zip contains everything so far, so merge the newest one only (an older one merged first just makes the
+store files bigger). `tools/merge_cache.py --again` repeats a merge.
+
 ## Publish on GitHub Pages
 
-1. Push the code (`site/data` and `cache` are ignored by git; the workflow builds the data on GitHub).
+1. Build the data on your PC (`python build.py`), then commit and push everything including `site/data` (about 130 MB uncompressed, much less once git compresses it). `cache` stays local.
 2. Repository → Settings → Pages → Source: **GitHub Actions**.
-3. The workflow in `.github/workflows/pages.yml` publishes `site/` on every push.
-   Run it manually with *rebuild* ticked to fetch fresh data on GitHub instead.
+3. The workflow in `.github/workflows/pages.yml` uploads `site/` on every push. It does not build anything; after a new `python build.py`, commit `site/data` and push again.
 
 Any static host works the same way: upload the contents of `site/`.
 
@@ -114,8 +170,7 @@ For non-German regions put the local language first in `[wikipedia] languages`
 (e.g. `["it", "de", "en"]`) so articles and keywords of that language are used.
 
 **Corrections** – `data/overrides.csv` sets the roof type of single churches by
-OSM id and wins over everything else. A future image classifier can write its
-results into the same file (column `source`).
+OSM id and wins over everything else, the image model included (column `source`).
 
 ## How it works
 
@@ -166,6 +221,10 @@ wd{}             qid, label, desc, facts per language, wikipedia links, intro,
 
 ```
 python -m tests.test_pipeline       # offline end-to-end test with invented fixtures
+python -m tests.test_tiles          # tiles, failure list, box splitting
+python -m tests.test_predictions    # model overwrite (>= 0,9)
+python -m tests.test_reports        # instant changes, queues, report counting
+python -m tests.test_kaggle         # tile languages, cache merge, Kaggle runner
 python -m tests.load_test /tmp/zt   # 250 000 invented points, to check rendering speed
 ```
 

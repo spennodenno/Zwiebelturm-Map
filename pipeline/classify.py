@@ -124,6 +124,7 @@ KEYWORDS: dict[str, list[tuple[str, str]]] = {
         ("other", r"\bspire\b|gabled tower|saddleback|pyramidal roof|rhenish helm"),
     ],
     "it": [("onion", r"cupola a cipolla|a bulbo|cuspide a cipolla")],
+    "fr": [("onion", r"clocher[- ]à[- ]bulbe|bulbe|bulbeux|en oignon")],
     "cs": [("onion", r"cibulov|cibulí")],
     "pl": [("onion", r"cebulast|hełm cebul")],
     "sl": [("onion", r"čebulast")],
@@ -151,7 +152,7 @@ _DE_BULBOUS = [
 _DE_TOWER_ONLY = (r"spitzhelm|spitzturm|pyramidenhelm|rautenhelm|rhombendach|faltdach|sattelturm|"
                   r"satteldachturm|turmhelm|helmdach|nadelhelm|knickhelm|achteckhelm|treppengiebelturm")
 _DE_ROOF = (r"satteldach|pultdach|zeltdach|pyramidendach|walmdach|flachdach|kegeldach|"
-            r"treppengiebel|spitzdach|helm|haube|kuppel")
+            r"treppengiebel|spitzdach|(?<!wil)helm|haube|kuppel")
 
 
 def _word(text: str, m: re.Match) -> str:

@@ -19,14 +19,14 @@
   <li><b>Zusammenführen.</b> Eine Kirche, die als Punkt und als Gebäude erfasst ist, wird zu einem Eintrag. Turm- und Dachteile in der Nähe werden der Kirche zugeordnet.</li>
   <li><b>Dachform aus den OSM-Angaben.</b> Entscheidend ist das Dach des Turms, nicht das des Kirchenschiffs. Steht dort nichts, gilt die Dachform als nicht erfasst.</li>
   <li><b>Wikipedia und Wikidata</b> kommen für ausgewählte Regionen dazu: Artikeltext, Einträge der bayerischen Denkmalliste, Fotos, Baujahr und weitere Angaben. Nennt ein Text die Dachform (zum Beispiel „Zwiebelhaube“), liest eine Wortregel sie aus. Das ist eine gewöhnliche Textsuche, keine KI.</li>
-  <li><b>Bildmodell.</b> Aus Fotos schlägt ein Modell Dachformen vor (siehe „Einsatz von KI“). Die Vorschläge werden von Hand geprüft; erst bestätigte Einträge ändern die Karte.</li>
+  <li><b>Bildmodell.</b> Aus Fotos schlägt ein Modell Dachformen vor (siehe „Einsatz von KI“). Ist es sich sehr sicher (ab 90 %), setzt es die Dachform auf der Karte; Stichproben und Meldungen werden von Hand geprüft.</li>
   <li><b>Ergebnis.</b> Die Seite besteht aus statischen Dateien, ohne eigenen Server und ohne Benutzerkonten. Fotos lädt dein Browser erst beim Öffnen einer Karte von Wikimedia Commons.</li>
 </ol>
 
 <h3>Einsatz von KI</h3>
 <ul>
   <li><b>Bildmodell:</b> Ein kleines Klassifikationsmodell (YOLOv8) wurde mit von Hand beschrifteten Fotos auf Dachformen trainiert. Es ordnet weitere Fotos einer Dachform zu und nennt dazu seine Sicherheit. Es erzeugt keine Bilder oder Texte.</li>
-  <li><b>Keine automatischen Änderungen:</b> Vorhersagen des Modells gelangen nie von selbst auf die Karte. Sie werden von Hand geprüft, nur bestätigte Einträge werden übernommen.</li>
+  <li><b>Vorrang:</b> Per Hand geprüfte Einträge gehen vor dem Modell, das Modell geht vor den Angaben aus OpenStreetMap und den Artikeltexten. Wo das Modell die Dachform setzt, steht das auf der Karte unter „Woher die Einstufung kommt“. Das Modell kann sich irren; über „Falsch eingestuft?“ lässt sich ein Eintrag melden.</li>
   <li><b>Fotos:</b> Für eine Vorhersage wird ein Foto kurz geladen, ausgewertet und wieder verworfen. Nur von Hand beschriftete Fotos bleiben als Trainingsdaten lokal gespeichert und werden nicht veröffentlicht.</li>
   <li><b>Entwicklung:</b> Programm und Seitentexte entstanden mit Unterstützung eines KI-Assistenten (Claude von Anthropic). Die Texte aus Wikipedia und Wikidata stammen nicht von einer KI.</li>
 </ul>
@@ -62,14 +62,14 @@
   <li><b>Merging.</b> A church mapped both as a point and as a building becomes one entry. Tower and roof parts nearby are attached to the church.</li>
   <li><b>Roof shape from the OSM tags.</b> What counts is the roof of the tower, not the roof of the nave. If nothing is tagged, the roof shape counts as not recorded.</li>
   <li><b>Wikipedia and Wikidata</b> are merged for selected regions: article text, entries of the Bavarian monument list, photos, year built and other details. If a text names the roof shape (for example “Zwiebelhaube”), a word rule picks it up. That is an ordinary text search, not AI.</li>
-  <li><b>Image model.</b> A model suggests roof shapes from photos (see “Use of AI”). The suggestions are checked by hand; only confirmed entries change the map.</li>
+  <li><b>Image model.</b> A model suggests roof shapes from photos (see “Use of AI”). Where it is very sure (90 % or more) it sets the roof type on the map; spot checks and reports are reviewed by hand.</li>
   <li><b>Result.</b> The page is made of static files, with no server of its own and no user accounts. Your browser loads photos from Wikimedia Commons only when you open a card.</li>
 </ol>
 
 <h3>Use of AI</h3>
 <ul>
   <li><b>Image model:</b> A small classification model (YOLOv8) was trained on hand-labelled photos to tell roof shapes apart. It assigns further photos to a roof shape and reports how sure it is. It does not generate images or text.</li>
-  <li><b>No automatic changes:</b> The model's predictions never reach the map on their own. They are checked by hand, and only confirmed entries are applied.</li>
+  <li><b>Precedence:</b> Entries checked by hand come first, then the model, then the OpenStreetMap tags and article texts. Where the model sets the roof type, the card says so under “Where the classification comes from”. The model can be wrong; “Misclassified?” on the card reports an entry.</li>
   <li><b>Photos:</b> For a prediction a photo is downloaded briefly, analysed and discarded. Only hand-labelled photos stay on a local disk as training data, and they are not published.</li>
   <li><b>Development:</b> The software and the texts of this page were written with the help of an AI assistant (Claude by Anthropic). The texts from Wikipedia and Wikidata are not AI-written.</li>
 </ul>
@@ -118,6 +118,10 @@
       addRoof: 'Dachform in OSM eintragen', website: 'Website', source: 'Quelle',
       matched: (m) => m.dist == null ? 'Verknüpft über OSM-Tag' : `Verknüpft über Koordinaten (${m.dist} m)`,
       close: 'Schließen', error: 'Details konnten nicht geladen werden.',
+      fixTitle: 'Falsch eingestuft?', fixOwner: 'Neue Dachform (gilt sofort, wird später geprüft):',
+      fixPublic: 'Richtige Dachform melden (öffnet GitHub, ein Konto ist nötig):',
+      fixDone: (x) => `Geändert auf „${x}“. Zur Prüfung vorgemerkt.`, fixFail: 'Nicht gespeichert: ',
+      fixNoServer: 'Läuft python serve.py?',
     },
     en: {
       title: 'Onion Dome Map',
@@ -141,6 +145,10 @@
       addRoof: 'Add the roof shape in OSM', website: 'Website', source: 'Source',
       matched: (m) => m.dist == null ? 'Linked through the OSM tag' : `Linked by coordinates (${m.dist} m)`,
       close: 'Close', error: 'Could not load the details.',
+      fixTitle: 'Misclassified?', fixOwner: 'New roof type (applies at once, checked later):',
+      fixPublic: 'Report the correct roof type (opens GitHub, an account is needed):',
+      fixDone: (x) => `Changed to “${x}”. Marked for review.`, fixFail: 'Not saved: ',
+      fixNoServer: 'Is python serve.py running?',
     },
   };
   let lang = 'de';
@@ -150,7 +158,10 @@
   const t = (k) => T[lang][k];
   const fmt = (n) => Number(n).toLocaleString(lang === 'de' ? 'de-DE' : 'en-GB');
 
-  let man, map, cats, current = null;
+  let man, map, cats, current = null, curIdx = -1, curCoords = null, fixMsg = '';
+  let owner = false;                 // true only when the page is served by python serve.py
+  let setCats = () => {};            // set in init: (changes: [[pointIndex, categoryIndex]]) -> recolours dots
+  const REPO = 'https://github.com/spennodenno/Zwiebelturm-Map';
   const hidden = new Set();
   const chunkCache = new Map();
 
@@ -367,6 +378,29 @@
       if (current) renderCard(current);
     });
     renderPanel();
+
+    // dots changed by hand: recolour at once (the data files only change with the next build.py)
+    setCats = (changes) => {
+      for (const [k, c] of changes) if (features[k]) features[k].properties.c = c;
+      const src = map.getSource && map.getSource('pts');
+      if (src) src.setData({ type: 'FeatureCollection', features });
+    };
+    // Owner mode: python serve.py answers /api/ping. Static hosting (GitHub Pages) does not.
+    fetch('/api/ping', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((j) => {
+      if (!j || j.owner !== true) return;
+      owner = true;
+      if (current) renderCard(current);
+      return fetch('/api/quick', { cache: 'no-store' }).then((r) => r.json()).then((rows) => {
+        const at = new Map();
+        for (let k = 0; k < n; k++) at.set(lon[k] + '_' + lat[k], k);
+        const changes = [];
+        for (const q of rows) {
+          const k = at.get(q.lon + '_' + q.lat), ci = cats.findIndex((x) => x.key === q.roof);
+          if (k !== undefined && ci >= 0) changes.push([k, ci]);
+        }
+        if (changes.length) setCats(changes);
+      });
+    }).catch(() => { /* static hosting: no owner mode */ });
   }
 
   // ---------- panel / legend ----------
@@ -468,6 +502,7 @@
   }
 
   function openCard(i, coords) {
+    curIdx = i; curCoords = coords; fixMsg = '';
     map.getSource('sel').setData({ type: 'Feature', geometry: { type: 'Point', coordinates: coords }, properties: {} });
     const k = Math.floor(i / man.chunk_size);
     if (!chunkCache.has(k)) {
@@ -487,6 +522,51 @@
       $('card-body').replaceChildren(el('div', { class: 'card-pad' }, el('p', null, t('error'))));
       $('card').hidden = false;
     });
+  }
+
+  // Owner: change the roof type at once (serve.py writes data/overrides.csv + data/quick-changes.csv).
+  // Everyone else: a prefilled GitHub issue; tools/fetch_reports.py counts them later.
+  function fixBox(r) {
+    const box = el('div', { class: 'fix' }, el('h3', null, t('fixTitle')),
+      el('p', { class: 'fine' }, owner ? t('fixOwner') : t('fixPublic')));
+    const row = el('div', { class: 'fix-row' });
+    for (const k of ['onion', 'onion_double', 'welsch', 'dome', 'other']) {
+      const c = cats.find((x) => x.key === k);
+      if (!c) continue;
+      const b = el('button', { type: 'button', class: r.roof === k ? 'cur' : '' },
+        el('span', { class: 'dot', style: `background:${colorOf(c)}` }), c[lang] || c.en);
+      b.addEventListener('click', () => (owner ? quickChange(r, c) : reportChange(r, c)));
+      row.append(b);
+    }
+    box.append(row);
+    if (fixMsg) box.append(el('p', { class: 'fine', role: 'status' }, fixMsg));
+    return box;
+  }
+
+  function reportChange(r, c) {
+    const body = [`osm_id: ${r.id}`, `proposed: ${c.key}`, `current: ${r.roof}`, `name: ${r.name || ''}`,
+      `img: ${(r.wd && r.wd.image && r.wd.image.thumb) || ''}`, '',
+      'Automatisch ausgewertete Meldung, bitte die Zeilen oben nicht ändern. / Machine-read report, please keep the lines above.'].join('\n');
+    const url = `${REPO}/issues/new?title=${encodeURIComponent(`Meldung: ${r.id} → ${c.key}`)}&labels=report&body=${encodeURIComponent(body)}`;
+    window.open(url, '_blank', 'noopener');
+  }
+
+  function quickChange(r, c) {
+    const wd = r.wd || {};
+    fetch('/api/quick', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: r.id, roof: c.key, previous: r.roof, name: r.name || '',
+        lon: Math.round(r.lon * 1e6), lat: Math.round(r.lat * 1e6),   // exact values of points.bin (the clicked point is tile-rounded)
+        img: (wd.image && wd.image.thumb) || '' }) })
+      .then((res) => res.json().then((j) => { if (!res.ok) throw new Error(j.error || res.status); return j; }))
+      .then(() => {
+        r.roof = c.key; r.sub = c.bulbous ? c.key : null; delete r.sub_text;
+        if (c.key !== 'onion') delete r.n_onion;
+        r.src = ['Override (manual-quick): ' + (lang === 'de' ? 'noch nicht geprüft' : 'not yet checked')];
+        setCats([[curIdx, cats.indexOf(c)]]);
+        fixMsg = t('fixDone')(c[lang] || c.en);
+        renderCard(r);
+      })
+      .catch((e) => { fixMsg = t('fixFail') + e.message + ' ' + t('fixNoServer'); renderCard(r); });
   }
 
   function shapeLabel(s) {
@@ -515,9 +595,9 @@
     }
     const pad = el('div', { class: 'card-pad' });
     pad.append(el('span', { class: 'chip' }, el('span', { class: 'dot', style: `background:${colorOf(c)}` }), c[lang] || c.en));
-    const wdLabel = wd.label && (wd.label[lang] || wd.label.de || wd.label.en);
+    const wdLabel = wd.label && (wd.label[lang] || wd.label.de || wd.label.en || Object.values(wd.label).find(Boolean));
     pad.append(el('h2', null, r.name || wdLabel || (r.kind === 'tower' ? t('tower') : t('noname'))));
-    const P = (pid) => { const v = wd.props && wd.props[pid]; return v ? (v[lang] || v.de || v.en) : null; };
+    const P = (pid) => { const v = wd.props && wd.props[pid]; return v ? (v[lang] || v.de || v.en || Object.values(v).find(Boolean)) : null; };
     const country = man.countries.find((x) => x.iso === r.cc);
     const place = [P('P131') || tg['addr:city'] || tg['addr:place'] || tg['addr:suburb'], country && (country[lang] || country.en)].filter(Boolean).join(', ');
     pad.append(el('p', { class: 'sub' }, place));
@@ -577,6 +657,8 @@
     if (wd.qid) why.push('Wikidata ' + wd.qid + ': ' + t('matched')(wd));
     if (r.denkmal) why.push('Denkmalliste ' + r.denkmal.nr + ' (' + r.denkmal.how + ')');
     if (why.length) pad.append(el('div', null, el('h3', null, t('why')), el('ul', { class: 'why' }, why.map((s) => el('li', null, s)))));
+
+    pad.append(fixBox(r));
 
     const tagTable = (tags) => el('table', null, Object.keys(tags).sort().map((k) => el('tr', null, el('td', null, k), el('td', null, tags[k]))));
     const det = el('details', null, el('summary', null, `${t('allTags')} (${(r.ids || [r.id]).join(', ')})`), tagTable(tg));

@@ -4,7 +4,7 @@ import struct
 import tempfile
 from pathlib import Path
 
-from pipeline import boundaries, classify, geo, net, run
+from pipeline import boundaries, classify, geo, merge, net, run
 from tests import fake_sources
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -20,7 +20,8 @@ def main():
         (tmp / "boundaries" / "ne_10m_admin_0_countries.geojson").write_bytes(
             (ROOT / "cache" / "boundaries" / "ne_10m_admin_0_countries.geojson").read_bytes())
         out = tmp / "out"
-        cfg = (ROOT / "config.toml").read_text(encoding="utf-8").replace("pause_s = 3", "pause_s = 0").replace('source = "postpass"', 'source = "overpass"')
+        run.FAILED_FILE, run.FAILED_LOG = tmp / "failed-regions.txt", tmp / "build-failures.log"   # never touch the real data/
+        cfg = (ROOT / "config.toml").read_text(encoding="utf-8").replace("pause_s = 2", "pause_s = 0").replace('source = "postpass"', 'source = "overpass"')
         (tmp / "config.toml").write_text(cfg, encoding="utf-8")
         run.main(["--config", str(tmp / "config.toml"), "--countries", "DE,AT", "--cache", str(tmp), "--out", str(out)])
         calls_first = fake_sources.calls["overpass"]
@@ -69,6 +70,11 @@ def main():
     assert classify.parse_german("Saalbau mit Satteldach, Westturm mit Zwiebelhaube")["cat"] == "onion"
     assert classify.parse_german("verputzte Nischenanlage mit Pultdach") == {"building_roof": "Pultdach"}
     assert classify.parse_german("Chorturm mit Satteldach")["cat"] == "other"
+    assert "cat" not in classify.parse_german("Saalkirche St. Wilhelm mit Westturm")      # "helm" inside a name
+    assert classify.parse_german("Westturm mit Spitzhelm")["cat"] == "other"
+    rec = {"id": "way/1", "ids": ["way/1"], "roof": "onion", "sub": "onion", "n_onion": 2, "sub_text": "x", "src": []}
+    merge.apply_overrides([rec], [{"osm_id": "way/1", "roof": "other", "source": "t"}])
+    assert rec["roof"] == "other" and rec["sub"] is None and "n_onion" not in rec and "sub_text" not in rec
     assert geo.name_similarity("Pfarrkirche St. Georg", "Sankt Georg") == 1.0
     assert geo.name_similarity("St. Georg", "St. Martin") == 0.0
     print("all pipeline tests passed")

@@ -37,6 +37,14 @@ attach_radius_m = 60   # tower / roof parts are attached to the nearest church
 [export]
 chunk_size = 1000      # churches per detail file (loaded on click)
 
+# The photo model (data/predictions.csv, from `py tools/train_yolo.py predict`) sets the roof type when it is
+# sure. Order of authority: your overrides (data/overrides.csv, also every review click) > model > OSM / text.
+# Every change is noted in the info card ("Modell (Foto): …"). Set apply = false to ignore the model.
+[predictions]
+apply = true
+min_confidence = 0.9          # predictions below this never change the map
+protect = ["dome"]            # types the model may not overwrite (it was trained without domes)
+
 [wikipedia]
 # Wikidata items are matched to OSM churches by coordinates within this radius.
 match_radius_m = 120
@@ -58,9 +66,36 @@ exclude_labels = ["^Bodendenkmal"]
 properties = ["P571", "P1619", "P2048", "P84", "P149", "P825", "P140", "P708",
               "P1435", "P186", "P131"]
 
+# Wikipedia/Wikidata for whole countries without naming districts: the countries below are cut into a
+# regular grid. Every tile that holds at least one church is processed on its own, so one slow Wikidata
+# answer costs one tile, not the whole run. Needs no OSM relation names.
+# Tiles take the churches that no region below has processed (the [[wikipedia.regions]] blocks run first).
+[wikipedia.tiles]
+enabled = true           # true = process the tiles on every `py build.py` (hours on the first run); false = skip them
+countries = ["DE"]       # ISO codes; leave out the line for every configured country
+size_deg = 0.25          # tile edge in degrees (~28 km x 17 km). Smaller = more but lighter queries
+margin_deg = 0.003       # a Wikidata item just outside a tile can still match a church inside it
+# The Bavarian monument lists (Denkmalliste) need the municipalities of an OSM region. Tiles have none,
+# so they skip the lists by default; keep your Bavarian [[wikipedia.regions]] for those texts.
+denkmal_lists = false
+
 # Regions with Wikipedia/Wikidata merge. To switch on another region, copy a
 # block and describe the OSM boundary relation by its tags. Any admin area
 # works (district, state, canton, province, a whole country).
+
+# Wikipedia editions per country, used by the tiles: the local edition first (name, intro and article link on the
+# card), then German and English. A country that is not listed uses [wikipedia] languages. Germany and Austria stay
+# [de, en], so their cache is not touched. The local edition only matters when its keywords are known
+# (pipeline/classify.py KEYWORDS: it, fr, cs, pl, sl, hu); the roof type from the text of other languages is a start.
+[wikipedia.country_languages]
+CH = ["de", "fr", "it", "en"]
+CZ = ["cs", "de", "en"]
+SI = ["sl", "de", "en"]
+HU = ["hu", "de", "en"]
+PL = ["pl", "de", "en"]
+IT = ["it", "de", "en"]
+FR = ["fr", "de", "en"]
+
 [[wikipedia.regions]]
 id = "weilheim-schongau"
 label = "Landkreis Weilheim-Schongau"
@@ -108,3 +143,93 @@ id = "landsberg-am-lech"
 label = "Landkreis Landsberg am Lech"
 enabled = true
 osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Landsberg am Lech" }
+
+[[wikipedia.regions]]
+id = "altoetting"
+label = "Landkreis Altötting"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Altötting" }
+
+[[wikipedia.regions]]
+id = "berchtesgadener-land"
+label = "Landkreis Berchtesgadener Land"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Berchtesgadener Land" }
+
+[[wikipedia.regions]]
+id = "dachau"
+label = "Landkreis Dachau"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Dachau" }
+
+[[wikipedia.regions]]
+id = "ebersberg"
+label = "Landkreis Ebersberg"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Ebersberg" }
+
+[[wikipedia.regions]]
+id = "eichstaett"
+label = "Landkreis Eichstätt"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Eichstätt" }
+
+[[wikipedia.regions]]
+id = "erding"
+label = "Landkreis Erding"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Erding" }
+
+[[wikipedia.regions]]
+id = "freising"
+label = "Landkreis Freising"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Freising" }
+
+[[wikipedia.regions]]
+id = "fuerstenfeldbruck"
+label = "Landkreis Fürstenfeldbruck"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Fürstenfeldbruck" }
+
+[[wikipedia.regions]]
+id = "muehldorf"
+label = "Landkreis Mühldorf am Inn"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Mühldorf am Inn" }
+
+[[wikipedia.regions]]
+id = "muenchen-landkreis"
+label = "Landkreis München"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis München" }
+
+[[wikipedia.regions]]
+id = "neuburg-schrobenhausen"
+label = "Landkreis Neuburg-Schrobenhausen"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Neuburg-Schrobenhausen" }
+
+[[wikipedia.regions]]
+id = "pfaffenhofen"
+label = "Landkreis Pfaffenhofen an der Ilm"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Pfaffenhofen an der Ilm" }
+
+[[wikipedia.regions]]
+id = "starnberg"
+label = "Landkreis Starnberg"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Landkreis Starnberg" }
+
+[[wikipedia.regions]]
+id = "muenchen-stadt"
+label = "Stadt München"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "München" }
+
+[[wikipedia.regions]]
+id = "ingolstadt"
+label = "Stadt Ingolstadt"
+enabled = true
+osm_tags = { boundary = "administrative", admin_level = "6", name = "Ingolstadt" }
